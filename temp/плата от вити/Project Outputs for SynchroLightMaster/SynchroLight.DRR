@@ -1,0 +1,21 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: SynchroLight.PcbDoc   28.09.2018  13:25:00
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : SynchroLight.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      12mil (0.3mm)                                             Round             118       PTH        12.43inch (315.71mm)
+T2      16mil (0.4mm)                                             Round             136       PTH        31.49inch (799.88mm)
+T3      24mil (0.6mm)                                             Round             8         PTH        2.19inch (55.66mm)
+T4      28mil (0.7mm)                                             Round             16        PTH        2.10inch (53.34mm)
+T5      35mil (0.9mm)                                             Round             44        PTH        9.35inch (237.59mm)
+T6      39mil (1mm)                                               Round             3         PTH        0.20inch (5.00mm)
+T7      59mil (1.5mm)                                             Round             4         PTH        2.15inch (54.71mm)
+T8      130mil (3.3mm)                                            Round             4         PTH        9.01inch (228.91mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              333
+
+Total Processing Time (hh:mm:ss) : 00:00:00
