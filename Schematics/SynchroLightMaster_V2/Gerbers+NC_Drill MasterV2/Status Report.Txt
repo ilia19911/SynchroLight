@@ -1,0 +1,18 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [SynchroLightMaster_V2.PrjPcb]
+   Generated File[SynchroLightMaster_V2.GTL]
+   Generated File[SynchroLightMaster_V2.GBL]
+   Generated File[SynchroLightMaster_V2.GTO]
+   Generated File[SynchroLightMaster_V2.GTS]
+   Generated File[SynchroLightMaster_V2.GBS]
+   Generated File[SynchroLightMaster_V2.GKO]
+   Generated File[SynchroLightMaster_V2.RUL]
+   Generated File[SynchroLightMaster_V2.EXTREP]
+   Generated File[SynchroLightMaster_V2.REP]
+
+
+Files Generated   : 9
+Documents Printed : 0
+
+Finished Output Generation At 2:14:53 On 27.12.2018

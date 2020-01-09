@@ -1,0 +1,18 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [SynchroLightSlave_V2.PrjPcb]
+   Generated File[SynchroLightSlave_V2.GTL]
+   Generated File[SynchroLightSlave_V2.GBL]
+   Generated File[SynchroLightSlave_V2.GTO]
+   Generated File[SynchroLightSlave_V2.GTS]
+   Generated File[SynchroLightSlave_V2.GBS]
+   Generated File[SynchroLightSlave_V2.GKO]
+   Generated File[SynchroLightSlave_V2.RUL]
+   Generated File[SynchroLightSlave_V2.EXTREP]
+   Generated File[SynchroLightSlave_V2.REP]
+
+
+Files Generated   : 9
+Documents Printed : 0
+
+Finished Output Generation At 2:25:38 On 27.12.2018

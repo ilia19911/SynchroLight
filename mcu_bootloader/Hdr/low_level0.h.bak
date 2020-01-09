@@ -1,0 +1,30 @@
+#ifndef _LOW_LEVEL0_H_
+#define _LOW_LEVEL0_H_
+
+/* ======================================================================== */
+/* В данном файле описываются в формета pin_macro все ноги контроллера		*/
+/* Которые будут использоваться в проекте.									*/
+/* Также здесь объявлены функции для стартовой инициализации				*/
+/* ======================================================================== */
+
+// USART
+#define PIN_UART_TX						B,10,H,ALT_OUTPUT_PUSH_PULL,SPEED_50MHZ
+#define PIN_UART_RX 					B,11,H,INPUT_FLOATING,SPEED_50MHZ
+
+// SPI для общения с трансиверами
+#define PIN_SPI_SCK						A, 5,L,ALT_OUTPUT_PUSH_PULL,SPEED_50MHZ
+#define PIN_SPI_MOSI					A, 7,L,ALT_OUTPUT_PUSH_PULL,SPEED_50MHZ
+#define PIN_SPI_MISO					A, 6,H,INPUT_PULL_UP,SPEED_50MHZ
+#define PIN_SPI_CS						A, 4,L,OUTPUT_PUSH_PULL,SPEED_50MHZ
+
+// Управление усилителями + переключатель тракта
+#define PIN_SWITCH_RX_EN				B, 0,H,OUTPUT_PUSH_PULL,SPEED_50MHZ
+#define PIN_SWITCH_TX_EN				B, 1,H,OUTPUT_PUSH_PULL,SPEED_50MHZ
+#define PIN_AMP_TX_EN					A,11,H,OUTPUT_PUSH_PULL,SPEED_50MHZ
+#define PIN_AMP_RX_EN					A,12,H,OUTPUT_PUSH_PULL,SPEED_50MHZ
+
+void initLowLevel (void);
+void switchToRx (void);
+void switchToTx (void);
+
+#endif /* _LOW_LEVEL0_H_ */

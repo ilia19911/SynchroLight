@@ -1,0 +1,23 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: SynchroLightMaster_V2.PcbDoc   27.12.2018  2:13:41
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : SynchroLightMaster_V2.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      12mil (0.3mm)                                             Round             157       PTH        36.50inch (927.21mm)
+T2      16mil (0.4mm)                                             Round             123       PTH        11.27inch (286.29mm)
+T3      20mil (0.5mm)                                             Round             5         PTH        4.98inch (126.59mm)
+T4      24mil (0.6mm)                                             Round             6         PTH        1.74inch (44.13mm)
+T5      32mil (0.8mm)                                             Round             4         PTH        0.30inch (7.62mm)
+T6      35mil (0.9mm)                                             Round             36        PTH        5.68inch (144.33mm)
+T7      37mil (0.95mm)                                            Round             2         PTH        0.14inch (3.50mm)
+T8      39mil (1mm)                                               Round             3         PTH        0.20inch (5.00mm)
+T9      59mil (1.5mm)                                             Round             7         PTH        5.94inch (150.94mm)
+T10     130mil (3.3mm)                                            Round             4         PTH        9.00inch (228.60mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              347
+
+Total Processing Time (hh:mm:ss) : 00:00:01

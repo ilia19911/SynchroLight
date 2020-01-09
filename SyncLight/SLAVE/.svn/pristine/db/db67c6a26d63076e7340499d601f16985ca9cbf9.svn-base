@@ -1,0 +1,58 @@
+#define MAIN
+
+#include "include.h"
+
+int main (void)
+{
+	initLowLevel ();     
+	randomizer_init ();	
+	systick_timer_init ();
+	fileStorageInit ();
+
+	
+	led_map_init(static_led);
+	ledmap_set();	// 
+	led_map_set_maping();
+	
+
+
+	//player_play_mem(0, 0,	1);
+	
+	ws2812b_Init(&my_ws2812_3,70,105); // для устранения следствий бага. третий поток ленты не инициализируется, если не запустить функцию инициализации второй раз
+
+	//test_init_3();
+
+/* ============== INSERT 1 ============== */	
+
+/* ============== INSERT 1 ============== */	
+		
+	while (1)
+	{
+		payer_handler();
+		
+		leds led;
+		led.red = 0;
+		led.green = 100;
+		led.blue = 255;
+		//led_map_set_pixel(0, 0, led);
+		//led_map_set_pixel(0, 1, led);
+		//led_map_set_pixel(0, 2, led);
+		//led_map_set_pixel(0, 3,	led);
+		//
+	//	led_map_set_pixel(0, 0, led);
+	//	led_map_set_pixel(0, 1, led);
+	//	led_map_set_pixel(0, 2, led);
+	//	led_map_set_pixel(0, 34,	led);
+
+		//transceiverTask ();
+		rf_task();
+
+
+/* ============== INSERT 2 ============== */
+
+		
+/* ============== INSERT 2 ============== */
+	}
+}
+
+
