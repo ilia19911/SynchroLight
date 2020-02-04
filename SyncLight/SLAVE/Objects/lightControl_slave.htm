@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\lightControl_slave.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\lightControl_slave.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Jan 09 22:56:23 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Feb 02 20:26:37 2020
 <BR><P>
 <H3>Maximum Stack Usage =        424 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -41,9 +41,9 @@ Function Pointers
  <LI><a href="#[1e]">DMA1_Channel1_IRQHandler</a> from ws2812b.o(i.DMA1_Channel1_IRQHandler) referenced from ws2812b.o(i.init_w2812_TIM2_3_struct)
  <LI><a href="#[1f]">DMA1_Channel2_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[20]">DMA1_Channel3_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
- <LI><a href="#[21]">DMA1_Channel4_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
- <LI><a href="#[22]">DMA1_Channel5_IRQHandler</a> from ws2812b.o(i.DMA1_Channel5_IRQHandler) referenced from startup_stm32f10x_md.o(RESET)
- <LI><a href="#[22]">DMA1_Channel5_IRQHandler</a> from ws2812b.o(i.DMA1_Channel5_IRQHandler) referenced from ws2812b.o(i.init_w2812_TIM2_1_struct)
+ <LI><a href="#[21]">DMA1_Channel4_IRQHandler</a> from ws2812b.o(i.DMA1_Channel4_IRQHandler) referenced from startup_stm32f10x_md.o(RESET)
+ <LI><a href="#[21]">DMA1_Channel4_IRQHandler</a> from ws2812b.o(i.DMA1_Channel4_IRQHandler) referenced from ws2812b.o(i.init_w2812_TIM2_1_struct)
+ <LI><a href="#[22]">DMA1_Channel5_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[23]">DMA1_Channel6_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[24]">DMA1_Channel7_IRQHandler</a> from ws2812b.o(i.DMA1_Channel7_IRQHandler) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[24]">DMA1_Channel7_IRQHandler</a> from ws2812b.o(i.DMA1_Channel7_IRQHandler) referenced from ws2812b.o(i.init_w2812_TIM2_4_struct)
@@ -82,8 +82,8 @@ Function Pointers
  <LI><a href="#[2f]">TIM2_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[30]">TIM3_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
  <LI><a href="#[31]">TIM4_IRQHandler</a> from startup_stm32f10x_md.o(.text) referenced from startup_stm32f10x_md.o(RESET)
- <LI><a href="#[43]">TIM_OC1Init</a> from stm32f10x_tim.o(i.TIM_OC1Init) referenced from ws2812b.o(i.init_w2812_TIM2_1_struct)
- <LI><a href="#[44]">TIM_OC1PreloadConfig</a> from stm32f10x_tim.o(i.TIM_OC1PreloadConfig) referenced from ws2812b.o(i.init_w2812_TIM2_1_struct)
+ <LI><a href="#[43]">TIM_OC2Init</a> from stm32f10x_tim.o(i.TIM_OC2Init) referenced from ws2812b.o(i.init_w2812_TIM2_1_struct)
+ <LI><a href="#[44]">TIM_OC2PreloadConfig</a> from stm32f10x_tim.o(i.TIM_OC2PreloadConfig) referenced from ws2812b.o(i.init_w2812_TIM2_1_struct)
  <LI><a href="#[45]">TIM_OC3Init</a> from stm32f10x_tim.o(i.TIM_OC3Init) referenced from ws2812b.o(i.init_w2812_TIM2_3_struct)
  <LI><a href="#[46]">TIM_OC3PreloadConfig</a> from stm32f10x_tim.o(i.TIM_OC3PreloadConfig) referenced from ws2812b.o(i.init_w2812_TIM2_3_struct)
  <LI><a href="#[47]">TIM_OC4Init</a> from stm32f10x_tim.o(i.TIM_OC4Init) referenced from ws2812b.o(i.init_w2812_TIM2_4_struct)
@@ -505,7 +505,7 @@ Global Symbols
 <P><STRONG><a name="[20]"></a>DMA1_Channel3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_md.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[21]"></a>DMA1_Channel4_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_md.o(.text))
+<P><STRONG><a name="[22]"></a>DMA1_Channel5_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_md.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
 <P><STRONG><a name="[23]"></a>DMA1_Channel6_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_md.o(.text))
@@ -995,9 +995,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[74]"></a>__rt_locale</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_locale_intlibspace.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_ctype_table
+<BR><BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_common
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_ctype_table
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_common
 </UL>
 
 <P><STRONG><a name="[a1]"></a>_printf_fp_infnan</STRONG> (Thumb, 112 bytes, Stack size 24 bytes, _printf_fp_infnan.o(.text))
@@ -1160,8 +1160,8 @@ Global Symbols
 <BR>[Address Reference Count : 2]<UL><LI> startup_stm32f10x_md.o(RESET)
 <LI> ws2812b.o(i.init_w2812_TIM2_3_struct)
 </UL>
-<P><STRONG><a name="[22]"></a>DMA1_Channel5_IRQHandler</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, ws2812b.o(i.DMA1_Channel5_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = DMA1_Channel5_IRQHandler &rArr; led_handler &rArr; set_binary_data &rArr; convert_led_to_bin
+<P><STRONG><a name="[21]"></a>DMA1_Channel4_IRQHandler</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, ws2812b.o(i.DMA1_Channel4_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = DMA1_Channel4_IRQHandler &rArr; led_handler &rArr; set_binary_data &rArr; convert_led_to_bin
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_handler
 </UL>
@@ -1276,12 +1276,12 @@ Global Symbols
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_DMA
 </UL>
 
-<P><STRONG><a name="[43]"></a>TIM_OC1Init</STRONG> (Thumb, 132 bytes, Stack size 16 bytes, stm32f10x_tim.o(i.TIM_OC1Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TIM_OC1Init
+<P><STRONG><a name="[43]"></a>TIM_OC2Init</STRONG> (Thumb, 154 bytes, Stack size 16 bytes, stm32f10x_tim.o(i.TIM_OC2Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TIM_OC2Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> ws2812b.o(i.init_w2812_TIM2_1_struct)
 </UL>
-<P><STRONG><a name="[44]"></a>TIM_OC1PreloadConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_OC1PreloadConfig))
+<P><STRONG><a name="[44]"></a>TIM_OC2PreloadConfig</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_OC2PreloadConfig))
 <BR>[Address Reference Count : 1]<UL><LI> ws2812b.o(i.init_w2812_TIM2_1_struct)
 </UL>
 <P><STRONG><a name="[45]"></a>TIM_OC3Init</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, stm32f10x_tim.o(i.TIM_OC3Init))
@@ -1496,19 +1496,19 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[130]"></a>init_w2812_TIM2_1_struct</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, ws2812b.o(i.init_w2812_TIM2_1_struct))
+<P><STRONG><a name="[133]"></a>init_w2812_TIM2_1_struct</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, ws2812b.o(i.init_w2812_TIM2_1_struct))
 <BR><BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ws2812_init_univerces
 </UL>
 
-<P><STRONG><a name="[132]"></a>init_w2812_TIM2_3_struct</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, ws2812b.o(i.init_w2812_TIM2_3_struct))
+<P><STRONG><a name="[130]"></a>init_w2812_TIM2_3_struct</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, ws2812b.o(i.init_w2812_TIM2_3_struct))
 <BR><BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ws2812_init_univerces
 </UL>
 
-<P><STRONG><a name="[133]"></a>init_w2812_TIM2_4_struct</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, ws2812b.o(i.init_w2812_TIM2_4_struct))
+<P><STRONG><a name="[132]"></a>init_w2812_TIM2_4_struct</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, ws2812b.o(i.init_w2812_TIM2_4_struct))
 <BR><BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ws2812_init_univerces
 </UL>
 
-<P><STRONG><a name="[af]"></a>led_handler</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, ws2812b.o(i.led_handler))
+<P><STRONG><a name="[af]"></a>led_handler</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, ws2812b.o(i.led_handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = led_handler &rArr; set_binary_data &rArr; convert_led_to_bin
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;triple_defination
@@ -1516,7 +1516,7 @@ Global Symbols
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_binary_data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel7_IRQHandler
-<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel5_IRQHandler
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel4_IRQHandler
 <LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel1_IRQHandler
 </UL>
 
@@ -1991,9 +1991,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = ws2812_init_univerces &rArr; ws2812b_Init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ws2812b_Init
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_w2812_TIM2_4_struct
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_w2812_TIM2_3_struct
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_w2812_TIM2_1_struct
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_w2812_TIM2_4_struct
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_w2812_TIM2_3_struct
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_w2812_TIM2_1_struct
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2087,11 +2087,11 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sx1276_LoRa_SetFrequency
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sx1276_InitLoRaMode
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crossfade_correct
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crosfade_calc
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;linear_color_change_handler
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_linear_progress_y_TEST
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 </UL>
 
 <P><STRONG><a name="[146]"></a>_fdiv</STRONG> (Thumb, 384 bytes, Stack size 16 bytes, fdiv.o(x$fpl$fdiv), UNUSED)
@@ -2104,11 +2104,11 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sx1276_LoRa_SetFrequency
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sx1276_InitLoRaMode
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crossfade_correct
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crosfade_calc
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;linear_color_change_handler
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_linear_progress_y_TEST
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 </UL>
 
 <P><STRONG><a name="[147]"></a>_ffixu</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, ffixu.o(x$fpl$ffixu), UNUSED)
@@ -2124,11 +2124,11 @@ Global Symbols
 <P><STRONG><a name="[c6]"></a>__aeabi_ui2f</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$ffltu))
 <BR><BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sx1276_LoRa_SetFrequency
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sx1276_InitLoRaMode
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crossfade_correct
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crosfade_calc
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;linear_color_change_handler
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_linear_progress_y_TEST
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 </UL>
 
 <P><STRONG><a name="[184]"></a>_ffltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$ffltu), UNUSED)
@@ -2138,11 +2138,11 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sx1276_LoRa_SetFrequency
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sx1276_InitLoRaMode
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crossfade_correct
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crosfade_calc
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;linear_color_change_handler
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_linear_progress_y_TEST
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 </UL>
 
 <P><STRONG><a name="[148]"></a>_fmul</STRONG> (Thumb, 258 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul), UNUSED)
@@ -2302,11 +2302,11 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initLowLevel
 </UL>
 
-<P><STRONG><a name="[db]"></a>init_gpio</STRONG> (Thumb, 1866 bytes, Stack size 0 bytes, low_level0.o(i.init_gpio))
+<P><STRONG><a name="[db]"></a>init_gpio</STRONG> (Thumb, 964 bytes, Stack size 0 bytes, low_level0.o(i.init_gpio))
 <BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initLowLevel
 </UL>
 
-<P><STRONG><a name="[da]"></a>init_rcc</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, low_level0.o(i.init_rcc))
+<P><STRONG><a name="[da]"></a>init_rcc</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, low_level0.o(i.init_rcc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = init_rcc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
@@ -2331,11 +2331,11 @@ Local Symbols
 <P><STRONG><a name="[c5]"></a>crosfade_calc</STRONG> (Thumb, 106 bytes, Stack size 32 bytes, player.o(i.crosfade_calc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = crosfade_calc &rArr; holdtime_calc &rArr; auto_start_next_frame &rArr; fill_frame &rArr; TEST_get_frame
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;holdtime_calc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;payer_handler
 </UL>

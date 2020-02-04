@@ -1,0 +1,267 @@
+#include "include.h"
+
+
+
+#define START_SLAVE
+
+#define MEMORY 		
+
+#define TEST_MODULE
+
+#ifdef TEST_MODULE
+uint8_t temp_mem[25*21]={				//	[ структура типа перехода......[структура формата сцены............................................................................................]
+//	instr		time fade		time hold			направление		плавн.перех.		формат сцены			абсолютный цвет rgb
+		1,0,			200,0,			45,1,				0,0,						10,								1, 0,							255,255,255,            0,0,0,0,0,0,0, 		///  белый цвет вход 2сек , задержка 2сек
+	//	instr		time fade		time hold							                           						абсолютный цвет rgb
+		1,0,			200,0,			45,1,				0,0,						10,								1, 0,							255,0,100,            0,0,0,0,0,0,0,		//  маджента. Переход сверху вниз 2сек. задержка 3сек
+	//	instr		time fade		time hold							                           						абсолютный цвет rgb
+		1,0,			200,0,				45,1,			0,0,						10,								1, 0,							0,0,255,            0,0,0,0,0,0,0,			//  синий. Переход сверху вниз 2сек. задержка 3сек
+	//	instr		time fade		time hold													вертикальные полосы			кл-во полос		1 цвет 					2 цвет					3 цвет
+		1,0,			200,0,				45,1,			1,1,						30,								2, 0,							3,				255,0,50,					0,0,255,					255,0,50,   							//6 шаг
+	//	instr		time fade		time hold							                           
+		1,0,			200,0,			45,1,				1,1,						30,								2, 0,							3,				255,0,50,						255,255,255,								0,0,255, 				//  8шаг
+	//	instr		time fade		time hold							                                        
+		1,0,			200,0,			45,1,				1,1,						30,								2, 0,							3,				0,0,255,						255,0,50,									255,255,0255,		//10 шаг
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,								0,0,255,				// 12 шаг 
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,				0,0,255,										255,0,50,			//13
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				0,0,255,						255,0,50,									255,255,255,		//14
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,								0,0,255,				// 12 шаг 
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,				0,0,255,										255,0,50,			//13
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				0,0,255,						255,0,50,									255,255,255,		//14
+		//	instr		time fade		time hold							                         							
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,								0,0,255,				// 12 шаг 
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,				0,0,255,										255,0,50,			//13
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				0,0,255,						255,0,50,									255,255,255,		//14
+		//	instr		time fade		time hold							                         							
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,								0,0,255,				// 12 шаг 
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,				0,0,255,										255,0,50,			//13
+	//	instr		time fade		time hold							                                        
+		1,0,			50,0,				45,1,				1,1,						30,								2, 0,							3,				0,0,255,						255,0,50,									255,255,255,		//14
+		//	instr		time fade		time hold																			 							
+		1,0,			200,0,			200,0,			0,0,						10,								1, 0,							255,255,255,            0,0,0,0,0,0,0 		///  белый цвет вход 2сек , задержка 2сек
+
+};
+#endif
+
+static void (*func_pointer)(frame instruction, uint16_t x, uint16_t y, leds *this_led, uint8_t crosfade);
+/*
+header memory structure
+number
+
+
+
+
+once mem
+[0] - number
+[1] - number
+
+[3] - scens
+[4] - scens
+
+[5] - adress 1 scen
+[5] - adress 1 scen
+
+[n+5] - adress n scen
+
+
+	n scen structure
+	[0] - macro comand
+	[1] - macro comand
+	[2]   - data
+	[2+n] - data
+	
+		data structur
+		if macro = 1 (color transition)
+		[0] - new red color
+		[1] - new green color
+		[2] - new blue color
+		[3] - x offset (8 bit - revers (right to left))
+		[4] - y offset (8 bit - revers (right to left))
+		[5] - commun speed low bit
+		[6] - commun speed hight bit
+
+
+	
+
+*/
+void TEST_get_frame(uint16_t frame_number)
+{
+	memcpy((void*)(&FRAME ),temp_mem + (frame_number*21),21);//для проверки
+}
+//================================================================================
+//leds get_next_led_state(uint16_t x, uint16_t y)
+//{
+//	leds this_led;
+//	this_led.red = FRAME.buffer[0];
+//	this_led.green = FRAME.buffer[1];
+//	this_led.blue = FRAME.buffer[2];
+//	return this_led;
+//}
+//================================================================================
+//заполняет структуру плейбека, который загружен в структуру мем хедера
+void fill_playback_header()
+{
+		my_memory.get_memory((void*)&PLAYBACK_HEADER, sizeof(PLAYBACK_HEADER),  my_memory.my_scen_header.start_adress);
+}
+//================================================================================ 
+////возвращает адрес фрейма 
+//static uint16_t get_frame_adress(uint16_t mem_number, uint16_t frame_number)
+//{
+//		if(frame_number	> PLAYBACK_HEADER.number_of_frame) return 0; // если фрейма не существует.
+//		my_memory.get_memory(my_coverter.separat_data, sizeof(uint16_t), my_memory.my_scen_header.start_adress + sizeof(PLAYBACK_HEADER) + frame_number*sizeof(uint16_t) );//записываем адрес
+//	
+//		return my_coverter.union_state; // возвращаем адрес фрейма
+//}
+//================================================================================
+//static uint16_t get_frame_size(uint16_t mem_number, uint16_t frame_number)
+//{
+//		if(frame_number	< PLAYBACK_HEADER.number_of_frame) // если фрейм не последний 
+//			 return (get_frame_adress(mem_number, frame_number + 1) - 1) - get_frame_adress(mem_number, frame_number); // адрес последнего байта фрейма
+//	if(frame_number	== PLAYBACK_HEADER.number_of_frame) // если фрейм последний
+//			return my_memory.my_scen_header.last_adress - get_frame_adress(mem_number, frame_number); // берем адрес конца мема
+//}
+//================================================================================
+void fill_frame(uint16_t mem_number, uint16_t frame_number)
+{
+		#ifndef TEST_MODULE
+				uint16_t frame_adress 			= get_frame_adress(mem_number, frame_number);
+				uint16_t frame_size =	get_frame_size(mem_number, frame_number);
+				my_memory.get_memory((void*)&FRAME_HEADER, frame_size, frame_adress);
+		#endif
+	#ifdef TEST_MODULE
+		//memcpy((void*)(&FRAME + (frame_number*20)),temp_mem,20);//для проверки
+		 TEST_get_frame(frame_number);
+	#endif
+
+}
+//================================================================================
+//включает воспроизведение
+void player_start_mem(uint16_t mem_number, uint8_t mem_frame,	int8_t rate) 
+{
+		
+			//set_playback( mem_number,  mem_frame,	 rate);
+	// устанавливает параметры воспроизведения
+		my_player.rate 								= rate;
+		my_player.mem 								= mem_number;
+		my_player.frame 							= mem_frame;
+		my_player.state								= PLAYBACK_ENABLED; 	// включаем воспроизведение
+		my_player.frame_time_begine 	= systick_timer.tics; // записываем время включения
+		my_player.crosfade						= 0;
+}
+//авто старт следующего фрейма
+//================================================================================
+void auto_start_next_frame()
+{
+		my_player.frame ++; // переключаем номер сцены
+	
+	#ifdef TEST_MODULE
+			if(my_player.frame>18) my_player.frame = 0;
+	#endif
+		PREVIOUS_FRAME = FRAME;
+		fill_frame( my_player.mem,  my_player.frame);
+		player_start_mem( my_player.mem,  my_player.frame,	 1);
+}
+//================================================================================
+//выключает воспроизведение
+void player_stop_mem()
+{
+		my_player.state				= PLAYBACK_DISABLED; 	// выключаем воспроизведение
+}
+//================================================================================
+void set_led_state()
+{
+	leds this_led;
+	for(uint16_t x = 0; x < X_MATRIX_SIZE; x++)
+	{
+		for(uint16_t y = 0; y < Y_MATRIX_SIZE; y++)
+				{
+					 handler_definition(FRAME, x, y, &this_led, my_player.crosfade);
+					 led_map_set_pixel(x, y, this_led);
+				}
+	}
+}
+//================================================================================
+static uint8_t holdtime_calc()
+{
+			if( (((float)(systick_timer.tics  - my_player.frame_time_begine) /((float)FRAME.holdtime*10))*255) > my_player.hold)
+			{
+					my_player.hold++;
+					if(my_player.hold == 255)// если кросфейд закончен, то ставим время начала холдфейд
+					{
+							auto_start_next_frame(); // переключаем сцену автоматически	
+							my_player.crosfade	= 0;
+							my_player.hold			= 0;
+					}
+					return 0;
+			}
+		 return 1;
+}
+//================================================================================
+/*
+функция для того чтобы пересчет изменений происходил по 1/255 от всего времени изменения, для того чтобы всегда можно было расчитать начальное состояние светодиодов
+*/
+static uint8_t crosfade_calc()
+{
+		if(my_player.crosfade == 255)// если кросфейд закончен, то ставим время начала холдфейд
+		{
+				return holdtime_calc();	
+		}
+		//если еще идет воспроизведение кросфейдера
+		if( (((float)(systick_timer.tics  - my_player.frame_time_begine) /((float)FRAME.crostime*10))*255) > my_player.crosfade)
+		{
+				my_player.crosfade++;
+				return 0;
+		}
+		else return 1;
+}
+//================================================================================
+// должен находиться в мейне
+void payer_handler(void)
+{
+		if(my_player.state	== PLAYBACK_DISABLED) return;
+		if(crosfade_calc()!=0) return; // проверяем, изменилось ли значение кросфейдера
+		set_led_state();
+}
+//================================================================================
+void player_comand_handler()
+{
+	
+}
+//================================================================================
+// внешняя команда для запуска сцены с номером фрейма и относительной скоростью воспроизведения
+void player_play_mem(uint16_t mem_number, uint8_t mem_frame,	uint8_t rate) 
+{
+	#ifndef TEST_MODULE
+		fill_mem_header(mem_number);// обновляем данные о меме 
+		fill_playback_header();			//заполняем структуру плейбека
+	#endif
+		fill_frame( mem_number,  mem_frame);
+		player_start_mem( mem_number,  mem_frame,	 rate);
+}
+//
+//void player_packet_parser(uint8_t packet[])
+//{
+//		switch(packet[0])
+//		{
+//		
+//		}
+//}
+//void player_master_control(uint8_t comand)
+//{
+//		switch()
+//
+//}
+//
+
+
+
+

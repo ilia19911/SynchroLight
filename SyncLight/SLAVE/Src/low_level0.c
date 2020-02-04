@@ -39,7 +39,7 @@ static void init_rcc (void)
 	
 	RCC_APB2PeriphClockCmd (RCC_APB2Periph_AFIO, ENABLE);				// Включаием AFIO
 	RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM2, ENABLE);				// Включаем второй таймер
-	//RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM3, ENABLE);				// Включаем второй таймер
+	RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM4, ENABLE);				// Включаем второй таймер
 	RCC_AHBPeriphClockCmd (RCC_AHBPeriph_DMA1, ENABLE);				// Включаем первый ДМА
 }
 /* ======================================================================	*/
@@ -72,21 +72,21 @@ static void init_gpio (void)
 	pin_init (PIN_SPI_FLASH_MISO);
 	pin_init (PIN_SPI_FLASH_SD_CS);
 	pin_init (PIN_SPI_FLASH_AT_CS);
-	pin_init (PIN_BUTTON_1);
-	pin_init (PIN_BUTTON_2);
-	pin_init (PIN_BUTTON_3);
-	pin_init (PIN_BUTTON_4);
-	pin_init (PIN_SEG_A);
-	pin_init (PIN_SEG_B);
-	pin_init (PIN_SEG_C);
-	pin_init (PIN_SEG_D);
-	pin_init (PIN_SEG_E);
-	pin_init (PIN_SEG_F);
-	pin_init (PIN_SEG_G);
-	pin_init (PIN_DIGIT_EN_1);
-	pin_init (PIN_DIGIT_EN_2);
-	pin_init (PIN_DIGIT_EN_3);
-	pin_init (PIN_DIGIT_EN_4);
+	//pin_init (PIN_BUTTON_1);
+	//pin_init (PIN_BUTTON_2);
+	//pin_init (PIN_BUTTON_3);
+	//pin_init (PIN_BUTTON_4);
+	//pin_init (PIN_SEG_A);
+	//pin_init (PIN_SEG_B);
+	//pin_init (PIN_SEG_C);
+	//pin_init (PIN_SEG_D);
+	//pin_init (PIN_SEG_E);
+	//pin_init (PIN_SEG_F);
+	//pin_init (PIN_SEG_G);
+	//pin_init (PIN_DIGIT_EN_1);
+	//pin_init (PIN_DIGIT_EN_2);
+	//pin_init (PIN_DIGIT_EN_3);
+	//pin_init (PIN_DIGIT_EN_4);
 }
 /* ======================================================================	*/
 

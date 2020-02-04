@@ -1,0 +1,93 @@
+#include "include.h"
+
+static void rf_parse (uint8_t *data, uint8_t length);
+static const uint8_t rfheader[3] = {0xcd, 0x16, 0xbb};
+
+static uint8_t txBuff[64];
+
+void rf_task (void)
+{
+	// Обновим состояние трансивера
+	if (software_timer (&transc_update)) sx1276_LoRa_updateState (&transc);
+	
+	// Если есть принятые данные - обрабатываем их
+	if (transc.receiver.readyRead)
+	{
+		rf_parse (transc.receiver.rxBuffer, transc.receiver.bytesReceived);
+		transc.receiver.readyRead = 0;
+	}
+}
+
+static void rf_parse (uint8_t *data, uint8_t length)
+{
+	rf_packet_t *pck = (void*)data;
+	rf_packet_start_t *st = (void*)pck->data;
+	
+	// Проверка хидера
+	if (memcmp (data, rfheader, sizeof (rfheader)) != 0) 
+	{
+		dprintf ("Receive unsupported message\r\n");
+		return;
+	}
+	
+	// Проверка адреса
+	if ((pck->addr != SELF_ADDRESS) && (pck->addr != RF_ADDRESS_BROADCAST))
+	{
+		dprintf ("Receive misstake message\r\n");
+		return;
+	}
+	
+	// Адрес наш. Обрабатываем-с
+	switch (pck->cmd)
+	{
+		case RF_CMD_OPCODE_REGISTER:
+			
+			break;
+		
+		case RF_CMD_OPCODE_START:
+			player_synchro(st->mem, st->scene, (uint8_t)st->rate); 
+			break;
+		
+		case RF_CMD_OPCODE_STOP:
+			player_stop_mem();
+			
+			break;
+		
+		default: break;
+	}
+	
+}
+
+void rf_sendStartCmd (uint16_t addr, uint16_t mem, uint16_t scene, int8_t rate)
+{
+	rf_packet_t *pck = (void*)txBuff;
+	rf_packet_start_t *start = (void*)pck->data;
+	
+	// Запихиваем хидер
+	memcpy (txBuff, rfheader, sizeof (rfheader));
+	
+	pck->addr = addr;
+	pck->cmd = RF_CMD_OPCODE_START;
+	pck->dataLen = sizeof (rf_packet_start_t);
+	
+	start->mem = mem;
+	start->scene = scene;
+	start->rate = rate;
+	
+	sx1276_LoRa_sendPacket (&transc, txBuff, RF_PACKET_HEADER_LEN + pck->dataLen);
+}
+
+void rf_sendStopCmd (uint16_t addr)
+{
+	rf_packet_t *pck = (void*)txBuff;
+	
+	// Запихиваем хидер
+	memcpy (txBuff, rfheader, sizeof (rfheader));
+	
+	pck->addr = addr;
+	pck->cmd = RF_CMD_OPCODE_STOP;
+	pck->dataLen = 0;
+	
+	sx1276_LoRa_sendPacket (&transc, txBuff, RF_PACKET_HEADER_LEN + pck->dataLen);	
+}
+

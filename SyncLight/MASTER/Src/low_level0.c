@@ -20,9 +20,24 @@ void initLowLevel (void)
 	at25df_init ();
 	uart_init (&uart_debug, 115200);
 	
-	#warning Here must be reinitialization for use semisegment indicator directly, not by bcd decoder
-	display_init_74hc(GPIOC, 13,GPIOB, 3,GPIOB,4,GPIOC,14);
-	display_init_symbol(GPIOA,11,GPIOB, 9,GPIOB, 8,GPIOA, 15);
+	Display_init( &my_display, 4);
+    
+	init_symbol(&my_display,
+		GPIOB, 7,
+		GPIOA, 1,
+		GPIOA, 0,
+		GPIOB, 5,
+		GPIOB, 1,
+		GPIOA, 11,
+		GPIOB, 6
+	);
+
+	init_dig(&my_display,GPIOB, 8,0);
+	init_dig(&my_display,GPIOA, 15,1);
+	init_dig(&my_display,GPIOB, 3, 2);
+	init_dig(&my_display,GPIOB, 4, 3);
+    
+    set_string(&my_display, "dEN0", 4);
 
 	dprintf ("\r\n\r\n\r\nSynchro light v%d.%d%s starting...\r\n", VERSION_MAJOR, VERSION_MINOR, VERSION_LITERAL);
 }

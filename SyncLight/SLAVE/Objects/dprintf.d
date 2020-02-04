@@ -1,12 +1,12 @@
 .\objects\dprintf.o: ..\commonLibs\unilib\dprintf.c
 .\objects\dprintf.o: .\Hdr\include.h
-.\objects\dprintf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\dprintf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\dprintf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\dprintf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+.\objects\dprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\dprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\dprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\dprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 .\objects\dprintf.o: .\CMSIS\stm32f10x.h
 .\objects\dprintf.o: .\CMSIS\core_cm3.h
-.\objects\dprintf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\dprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\dprintf.o: .\CMSIS\system_stm32f10x.h
 .\objects\dprintf.o: .\Hdr\stm32f10x_conf.h
 .\objects\dprintf.o: ..\commonLibs\StdPeriph\inc\stm32f10x_adc.h
@@ -47,7 +47,7 @@
 .\objects\dprintf.o: ..\commonLibs\unilib\mcs\arm_cm3\delay.h
 .\objects\dprintf.o: ..\commonLibs\unilib\mcs\stm32\wdt.h
 .\objects\dprintf.o: ..\commonLibs\unilib\crc\crc8.h
-.\objects\dprintf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\dprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\dprintf.o: ..\commonLibs\unilib\mcs\stm32\crc32.h
 .\objects\dprintf.o: ..\commonLibs\unilib\external_devices\sx1276_transc.h
 .\objects\dprintf.o: ..\commonLibs\unilib\mcs\stm32\adclib.h
@@ -55,7 +55,7 @@
 .\objects\dprintf.o: ..\commonLibs\unilib\spi_bitbang.h
 .\objects\dprintf.o: .\Hdr\spi_bitbang_conf.h
 .\objects\dprintf.o: ..\commonLibs\unilib\dprintf.h
-.\objects\dprintf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\dprintf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\dprintf.o: ..\commonLibs\unilib\ic_drivers\at25df.h
 .\objects\dprintf.o: ..\commonLibs\unilib\ic_drivers\at25db321_fileStorage.h
 .\objects\dprintf.o: ..\commonLibs\unilib\mcs\stm32\uni_flash.h

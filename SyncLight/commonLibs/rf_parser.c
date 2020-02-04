@@ -121,7 +121,7 @@ void rf_sendStopCmd (uint16_t addr)
 	
 	sx1276_LoRa_sendPacket (&transc, txBuff, RF_PACKET_HEADER_LEN + pck->dataLen);	
 }
-
+#ifdef MASTER
 void rf_binding (uint8_t ch)
 {
 	rf_packet_t *pck = (void*)txBuff;
@@ -146,7 +146,7 @@ void rf_binding (uint8_t ch)
 			sx1276_LoRa_sendPacket (&transc, txBuff, RF_PACKET_HEADER_LEN + pck->dataLen);
 			while (transc.Control.busy) 
 			{
-				dislay_Handler ();
+				dislay_Handler (&my_display);
 				transceiverTask ();
 			}
 			delay_ms (50);
@@ -156,7 +156,7 @@ void rf_binding (uint8_t ch)
 	// Всех оповестили -- можно и самим на частоту новую переходить
 	rf_set_channel (ch);
 }
-
+#endif
 void rf_set_channel (uint8_t ch)
 {
 	sx1276_LoRa_SetFrequency (&transc, RF_FREQ_CHANNEL(ch));
