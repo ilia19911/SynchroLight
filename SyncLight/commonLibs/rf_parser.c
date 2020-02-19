@@ -86,6 +86,11 @@ void rf_parse (uint8_t *data, uint8_t length)
 		
 		default: break;
 	}
+
+#ifdef RETRANSLATOR
+	sx1276_LoRa_sendPacket (&transc, transc.receiver.rxBuffer, transc.receiver.bytesReceived);
+#endif /* RETRANSLATOR */
+
 }
 
 void rf_sendStartCmd (uint16_t addr, uint16_t mem, uint16_t scene, int8_t rate, uint8_t crossFade)

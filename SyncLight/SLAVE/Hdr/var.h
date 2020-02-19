@@ -10,6 +10,7 @@
 
 //#define MASTER // раскоментировать, если это мастер
 #define SLAVE
+//#define RETRANSLATOR
 
 #if !defined (MASTER) && !defined (SLAVE)
 	#error Please specefy - this device master or slave
