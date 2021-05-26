@@ -25,8 +25,6 @@ int main (void)
 
 /* ============== INSERT 1 ============== */	
 
-	wdt_enable (3.0f);
-
 	while (1)
 	{
 		
@@ -38,7 +36,6 @@ int main (void)
 
 		
 /* ============== INSERT 2 ============== */
-		wdt_reset();
 	}
 }
 

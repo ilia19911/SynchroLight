@@ -13,7 +13,7 @@ static void main_page_hanler()
 		uint8_t presset_button = buttonTask();
 		char string[5];
 		sprintf(string, "  %2d", my_player.frame );
-		set_string( &my_display,string,4);
+		display_set_string( string);
 		if(presset_button == button_1) 
 		{
 				player_play_mem(0, 0,	0);
@@ -39,7 +39,7 @@ static void rf_page_handler()
 		uint8_t presset_button = buttonTask();
 
 		sprintf(string, "01%2d", this_channel );
-		set_string(&my_display, string, 4);
+		display_set_string( string);
 
 		if(presset_button == button_1) 
 		{
@@ -66,7 +66,7 @@ static void rf_page_handler()
 }
 void menu_handler(void)
 {
-	dislay_Handler(&my_display);
+	dislay_Handler();
 
 	switch(page_number)
 	{

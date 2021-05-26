@@ -1,8 +1,6 @@
 #ifndef _VAR_H_
 #define _VAR_H_
 
-#define __nop __NOP 
-
 /* ======================================================================	*/
 /* Тут описываются ВСЕ глобальный переменные проекта.											*/
 /* Только тут.																														*/
@@ -10,9 +8,10 @@
 #define RF_CLOCK_FREQUENCY													32000000
 #define SERVICE_FREQUENCY														869000000
 
+#define __nop __NOP 
+
 //#define MASTER // раскоментировать, если это мастер
 #define SLAVE
-//#define RETRANSLATOR
 
 #if !defined (MASTER) && !defined (SLAVE)
 	#error Please specefy - this device master or slave

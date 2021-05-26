@@ -18,6 +18,10 @@ void initLowLevel (void)
 	init_gpio ();
 	init_spi ();
 	initTransceiver ();
+	//uart_init (&uart_debug, 115200);
+
+	//dprintf ("Synchro light v%d.%d%s starting...\r\n", VERSION_MAJOR, VERSION_MINOR, VERSION_LITERAL);
+
 }
 /* ======================================================================	*/
 
@@ -39,8 +43,29 @@ static void init_rcc (void)
 	
 	RCC_APB2PeriphClockCmd (RCC_APB2Periph_AFIO, ENABLE);				// Включаием AFIO
 	RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM2, ENABLE);				// Включаем второй таймер
-	RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM4, ENABLE);				// Включаем второй таймер
+	//RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM3, ENABLE);				// Включаем второй таймер
 	RCC_AHBPeriphClockCmd (RCC_AHBPeriph_DMA1, ENABLE);				// Включаем первый ДМА
+	
+
+	//RCC->CFGR &=~ RCC_CFGR_SW;								// Переключаемся на тактование от встроенного генератора
+	//while (RCC->CFGR & RCC_CFGR_SWS);					// Ждем пока переключимся
+	//
+	//// Умножаем теперь на на 9, а на 8 PLL. Нам нужна частота в 64 МГц, а на MCO пойдет 32
+	//RCC_PLLCmd (DISABLE);
+	//RCC_PLLConfig (RCC_PLLSource_HSE_Div2, RCC_PLLMul_9);
+	//RCC_PLLCmd (ENABLE);
+  //
+	//while (!(RCC->CR & RCC_CR_PLLRDY));				// Ждем захвата ФАПЧ
+	//RCC->CFGR |= RCC_CFGR_SW_PLL;							// Переключаем тактование на PLL	
+	//while (!(RCC->CFGR & RCC_CFGR_SWS_PLL));	// Ждем пока переключимся
+	//
+	//// Включим MCO как PLL/2
+	//RCC_MCOConfig (RCC_MCO_PLLCLK_Div2);
+	//
+	//RCC_APB2PeriphClockCmd (RCC_APB2Periph_AFIO, ENABLE);				// Включаием AFIO
+	//RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM2, ENABLE);				// Включаем второй таймер
+	//RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM3, ENABLE);				// Включаем второй таймер
+	//RCC_AHBPeriphClockCmd (RCC_AHBPeriph_DMA1, ENABLE);				// Включаем первый ДМА
 }
 /* ======================================================================	*/
 
@@ -72,21 +97,20 @@ static void init_gpio (void)
 	pin_init (PIN_SPI_FLASH_MISO);
 	pin_init (PIN_SPI_FLASH_SD_CS);
 	pin_init (PIN_SPI_FLASH_AT_CS);
-	//pin_init (PIN_BUTTON_1);
-	//pin_init (PIN_BUTTON_2);
-	//pin_init (PIN_BUTTON_3);
-	//pin_init (PIN_BUTTON_4);
-	//pin_init (PIN_SEG_A);
-	//pin_init (PIN_SEG_B);
-	//pin_init (PIN_SEG_C);
-	//pin_init (PIN_SEG_D);
-	//pin_init (PIN_SEG_E);
-	//pin_init (PIN_SEG_F);
-	//pin_init (PIN_SEG_G);
-	//pin_init (PIN_DIGIT_EN_1);
-	//pin_init (PIN_DIGIT_EN_2);
-	//pin_init (PIN_DIGIT_EN_3);
-	//pin_init (PIN_DIGIT_EN_4);
+//	pin_init (PIN_FLASH_CARD_DET);
+	pin_init (PIN_MCO_OUT);
+	pin_init (PIN_BUTTON_1);
+	pin_init (PIN_BUTTON_2);
+	pin_init (PIN_BUTTON_3);
+	pin_init (PIN_BUTTON_4);
+	pin_init (PIN_BCD_0);
+	pin_init (PIN_BCD_1);
+	pin_init (PIN_BCD_2);
+	pin_init (PIN_BCD_3);
+	pin_init (PIN_DIGIT_EN_1);
+	pin_init (PIN_DIGIT_EN_2);
+	pin_init (PIN_DIGIT_EN_3);
+	pin_init (PIN_DIGIT_EN_4);
 }
 /* ======================================================================	*/
 
@@ -171,3 +195,11 @@ void transceiverTask (void)
 		transc.receiver.readyRead = 0;
 	}
 }
+
+
+
+
+
+
+
+

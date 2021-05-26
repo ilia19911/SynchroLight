@@ -1,7 +1,7 @@
 
 ## ------- TARGET STARTS HERE -------
-set(TARGET_NAME synchroLight_slave_debug)
-set(EXEC_NAME synchroLight_slave_debug_STM32F103CB)
+set(TARGET_NAME Target_1)
+set(EXEC_NAME Target_1_STM32F103CB)
 add_executable(${EXEC_NAME})
 
 set(MCU STM32F103CB)
@@ -27,7 +27,7 @@ target_include_directories(${EXEC_NAME} PRIVATE ./)
 target_include_directories(${EXEC_NAME} PRIVATE /n            ')
 target_include_directories(${EXEC_NAME} PRIVATE ./)
 
-set(COMPILE_FLAGS -gdwarf-2 -Og -mcpu=cortex-m3 -mthumb -mfloat-abi=soft  -mno-thumb-interwork -v)
+set(COMPILE_FLAGS -gdwarf-2 -Og -mcpu=cortex-m3 -mthumb -mfloat-abi=soft  -mno-thumb-interwork -v) # FOR_RELEASE(-Os -flto )
 set(STARTUP_CODE_SOURCE ${STARTUP_CODE_DIR}/startup_stm32f103xb.s)
 set(LDSCRIPT ${STARTUP_CODE_DIR}/STM32F103C8Tx_FLASH.ld)
 set	(GROUP_SRC_CMSIS

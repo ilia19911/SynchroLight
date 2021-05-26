@@ -8,9 +8,10 @@
 
 // Глобальные дефайны
 #define F_CPU							72000000
+#define NDEBUG
 
 #define VERSION_MINOR			2
-#define VERSION_MAJOR			1
+#define VERSION_MAJOR			0
 #define VERSION_LITERAL		"a"
 
 // Заголовки стандартной Сишной либлиотеки 
