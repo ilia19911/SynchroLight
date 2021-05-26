@@ -1,6 +1,0 @@
-/home/ilia/projects/varzin/SynchroLight/build/CMakeFiles/edit_cache.dir
-/home/ilia/projects/varzin/SynchroLight/build/CMakeFiles/myCustomTarget.dir
-/home/ilia/projects/varzin/SynchroLight/build/CMakeFiles/release_STM32F103CB.bin.dir
-/home/ilia/projects/varzin/SynchroLight/build/CMakeFiles/rebuild_cache.dir
-/home/ilia/projects/varzin/SynchroLight/build/CMakeFiles/release_STM32F103CB.hex.dir
-/home/ilia/projects/varzin/SynchroLight/build/CMakeFiles/release_STM32F103CB.dir
