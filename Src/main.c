@@ -6,13 +6,6 @@ timeout_t test;
 
 int main (void)
 {
-#ifdef NDEBUG
-	__disable_irq();
-	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x08002000);
-	__enable_irq();
-#endif /* DEBUG */
-
-	
 	initLowLevel ();     
 	randomizer_init ();	
 	systick_timer_init ();
@@ -27,15 +20,10 @@ int main (void)
 	
 	player_play_mem(0, 0,	0);
 	
-	// Включаем вачдог
-	wdt_enable (3.0f);
-	
 	while (1)
 	{
 		payer_handler();
 		rf_task ();
 		menu_handler();
-		
-		wdt_reset();
 	}
 }

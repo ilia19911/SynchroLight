@@ -20,7 +20,7 @@
 //=============================================================================
 # ifdef NDEBUG
 #  define dprintf_init(...)        {;}
-#  define DPRINTF(fmt, ...)        {;}
+#  define dprintf(fmt, ...)        {;}
 #  define dprint_array(src,len)    {;}
 #  define dprint_binary(src,len)   {;}
 #  define dclrscr()                {;}

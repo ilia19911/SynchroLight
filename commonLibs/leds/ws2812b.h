@@ -113,7 +113,6 @@ void DMA1_Channel1_IRQHandler(void);
 void DMA1_Channel7_IRQHandler(void);
 void DMA1_Channel3_IRQHandler(void);
 void DMA1_Channel5_IRQHandler(void);
-void DMA1_Channel4_IRQHandler(void);
 
 void init_w2812_TIM2_3_struct(void);
 void init_w2812_TIM2_4_struct(void);

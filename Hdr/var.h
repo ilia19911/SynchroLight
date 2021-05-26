@@ -1,7 +1,7 @@
 #ifndef _VAR_H_
 #define _VAR_H_
 
-#define __nop __NOP
+#define __nop __NOP 
 
 /* ======================================================================	*/
 /* Тут описываются ВСЕ глобальный переменные проекта.											*/
@@ -48,20 +48,19 @@ coverter								my_coverter;
 
 //uint8_t									active = 0;
 uint16_t									channel;
-Display                                 my_display;
 #else /* MAIN */
 
 #include "include.h"
 
 
-#define FRAME                   my_player.frame_header
+#define FRAME								my_player.frame_header
 #define PREVIOUS_FRAME			my_player.previous_frame
 #define PLAYBACK_HEADER 		my_player.playback_header
 
 
-extern sx1276_LoRa_Modem        transc;
-extern timeout_t                transc_update;
-extern  Display                 my_display;
+extern sx1276_LoRa_Modem transc;
+extern timeout_t transc_update;
+
 //#ifdef WS2812_1
 //	extern ws2812 				my_ws2812_1;
 //#endif

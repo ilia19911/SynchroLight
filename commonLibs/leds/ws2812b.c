@@ -33,7 +33,10 @@
 
 void ws2812_init_univerces(void)
 {
-
+		#ifdef WS2812_3
+		init_w2812_TIM2_1_struct();
+		ws2812b_Init(&my_ws2812_3,70,105);
+	#endif
 		
 	#ifdef WS2812_1
 			init_w2812_TIM2_3_struct();
@@ -43,10 +46,7 @@ void ws2812_init_univerces(void)
 			init_w2812_TIM2_4_struct();
 			ws2812b_Init(&my_ws2812_2,35,70);
 	#endif
-	#ifdef WS2812_3
-		init_w2812_TIM2_1_struct();
-		ws2812b_Init(&my_ws2812_3,70,105);
-	#endif
+	
 	//delay_ms(100);
 	//DMA1_Channel5->CCR = 0x00003193;
 	//DMA1_Channel5->CCR  |=  DMA_CCR5_DIR; 
@@ -132,7 +132,7 @@ uint16_t convert_led_to_bin(ws2812 *this_ws2812, uint16_t offset, uint16_t led_n
 	
 	for(uint8_t i = 0; i < led_number; i ++)
 	{
-				convert_byte_to_bin( this_ws2812->my_led[i + offset].red,				output + 	    (i * 24) );
+				convert_byte_to_bin( this_ws2812->my_led[i + offset].red,					output + 	    (i * 24) );
 				convert_byte_to_bin( this_ws2812->my_led[i + offset].green,				output + 8  + (i * 24) );
 				convert_byte_to_bin( this_ws2812->my_led[i + offset].blue,				output + 16 + (i * 24) );
 				counter += 24;
@@ -189,8 +189,8 @@ void led_handler(ws2812 *this_ws2812)
 		break;
 	}
 	//КОСТЫЛЬ для того чтобы после срыва тактирования, dma восстанавливался
-//		DMA1_Channel5->CCR = 0x00003193;
-//		DMA1_Channel5->CCR  |=  DMA_CCR5_DIR; 
+		DMA1_Channel5->CCR = 0x00003193;
+		DMA1_Channel5->CCR  |=  DMA_CCR5_DIR; 
 	// конец костыля 
 }
 //================================================================================
@@ -199,8 +199,8 @@ void ws2812b_Init(ws2812  *this_ws2812, uint16_t start_led, uint16_t stop_led)
 
 	 // ws2812 *pointer = this_ws2812;
 		GPIO_InitTypeDef 						GPIO_InitStruct;
-		TIM_TimeBaseInitTypeDef                 TIM_TimeBaseInitStruct;
-		TIM_OCInitTypeDef                       TIM_OCInitStruct;
+		TIM_TimeBaseInitTypeDef 		TIM_TimeBaseInitStruct;
+		TIM_OCInitTypeDef 					TIM_OCInitStruct;
 		DMA_InitTypeDef 						DMA_InitStruct;
 		NVIC_InitTypeDef 						NVIC_InitStruct;
 
@@ -217,19 +217,19 @@ void ws2812b_Init(ws2812  *this_ws2812, uint16_t start_led, uint16_t stop_led)
     GPIO_Init(this_ws2812->GPIO, &GPIO_InitStruct);
 
     // Initialize timer clock
-	TIM_TimeBaseInitStruct.TIM_Prescaler            =  0;
-    TIM_TimeBaseInitStruct.TIM_CounterMode          = TIM_CounterMode_Up;
-    TIM_TimeBaseInitStruct.TIM_Period               = WS2812B_PERIOD - 1;
-    TIM_TimeBaseInitStruct.TIM_ClockDivision        = TIM_CKD_DIV1;
+		TIM_TimeBaseInitStruct.TIM_Prescaler				=  0;
+    TIM_TimeBaseInitStruct.TIM_CounterMode			= TIM_CounterMode_Up;
+    TIM_TimeBaseInitStruct.TIM_Period						= WS2812B_PERIOD - 1;
+    TIM_TimeBaseInitStruct.TIM_ClockDivision		= TIM_CKD_DIV1;
 
     TIM_TimeBaseInit(this_ws2812->TIMER, &TIM_TimeBaseInitStruct);
 
     // Initialize timer PWM
     TIM_OCStructInit(&TIM_OCInitStruct);
 
-    TIM_OCInitStruct.TIM_OCMode         = TIM_OCMode_PWM1;
+    TIM_OCInitStruct.TIM_OCMode				= TIM_OCMode_PWM1;
     TIM_OCInitStruct.TIM_OutputState 	= TIM_OutputState_Enable;
-    TIM_OCInitStruct.TIM_Pulse          = 0;
+    TIM_OCInitStruct.TIM_Pulse				= 0;
     TIM_OCInitStruct.TIM_OCPolarity 	= TIM_OCPolarity_High;
 
     this_ws2812->TIM_OCInit(this_ws2812->TIMER, &TIM_OCInitStruct);
@@ -238,17 +238,17 @@ void ws2812b_Init(ws2812  *this_ws2812, uint16_t start_led, uint16_t stop_led)
     // Initialize DMA channel
     DMA_StructInit(&DMA_InitStruct);
 
-    DMA_InitStruct.DMA_PeripheralBaseAddr               = (uint32_t) this_ws2812->timer_dma_ccr;
-    DMA_InitStruct.DMA_MemoryBaseAddr                   = (uint32_t) this_ws2812->BUF_DMA1;
-	DMA_InitStruct.DMA_DIR                              = DMA_DIR_PeripheralDST;
-	DMA_InitStruct.DMA_BufferSize                       = sizeof(this_ws2812->BUF_DMA1);
-	DMA_InitStruct.DMA_PeripheralInc                    = DMA_PeripheralInc_Disable;
-    DMA_InitStruct.DMA_MemoryInc                        = DMA_MemoryInc_Enable;
-    DMA_InitStruct.DMA_PeripheralDataSize               = DMA_PeripheralDataSize_HalfWord;
-	DMA_InitStruct.DMA_MemoryDataSize                   = DMA_MemoryDataSize_Byte;
-	DMA_InitStruct.DMA_Mode                             = DMA_Mode_Normal;
-    DMA_InitStruct.DMA_Priority                         = DMA_Priority_VeryHigh;
-    DMA_InitStruct.DMA_M2M                              = DMA_M2M_Disable;
+    DMA_InitStruct.DMA_PeripheralBaseAddr					= (uint32_t) this_ws2812->timer_dma_ccr;
+    DMA_InitStruct.DMA_MemoryBaseAddr							= (uint32_t) this_ws2812->BUF_DMA1;
+		DMA_InitStruct.DMA_DIR												= DMA_DIR_PeripheralDST;
+		DMA_InitStruct.DMA_BufferSize									= sizeof(this_ws2812->BUF_DMA1);
+		DMA_InitStruct.DMA_PeripheralInc							= DMA_PeripheralInc_Disable;
+    DMA_InitStruct.DMA_MemoryInc									= DMA_MemoryInc_Enable;
+    DMA_InitStruct.DMA_PeripheralDataSize					= DMA_PeripheralDataSize_HalfWord;
+		DMA_InitStruct.DMA_MemoryDataSize 						= DMA_MemoryDataSize_Byte;
+		DMA_InitStruct.DMA_Mode												= DMA_Mode_Normal;
+    DMA_InitStruct.DMA_Priority										= DMA_Priority_VeryHigh;
+    DMA_InitStruct.DMA_M2M												= DMA_M2M_Disable;
 
     DMA_Init(this_ws2812->DMA_Channel, &DMA_InitStruct);
        
@@ -257,25 +257,25 @@ void ws2812b_Init(ws2812  *this_ws2812, uint16_t start_led, uint16_t stop_led)
     TIM_DMACmd(this_ws2812->TIMER, this_ws2812->timer_dma_cc, ENABLE);
 
     // Initialize DMA interrupt  
-    NVIC_InitStruct.NVIC_IRQChannel                     =   this_ws2812->DMA_IRQ_NUMBER;
-    NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority   =   this_ws2812->NVIC_prioritet;
-    NVIC_InitStruct.NVIC_IRQChannelSubPriority          =   WS2812B_IRQ_SUBPRIO;
-    NVIC_InitStruct.NVIC_IRQChannelCmd                  =   ENABLE;
+    NVIC_InitStruct.NVIC_IRQChannel =this_ws2812->DMA_IRQ_NUMBER;
+    NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = this_ws2812->NVIC_prioritet;
+    NVIC_InitStruct.NVIC_IRQChannelSubPriority = WS2812B_IRQ_SUBPRIO;
+    NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
     
     NVIC_Init(&NVIC_InitStruct);
 
     // Enable DMA interrupt
-	DMA_ITConfig(this_ws2812->DMA_Channel, DMA_IT_TC, ENABLE);
-	
-	
-	this_ws2812->start_led_number       = start_led;
-	this_ws2812->stop_led_number        = stop_led;
-	this_ws2812->my_led                 = static_led;// буфер светодиодов
-	this_ws2812->treset_buffer          = static_treset_buffer;
-	this_ws2812->offset                 = this_ws2812->start_led_number;
-	
-	start_ws2812(this_ws2812);
-	start_DMA(this_ws2812);
+		DMA_ITConfig(this_ws2812->DMA_Channel, DMA_IT_TC, ENABLE);
+		
+		
+		this_ws2812->start_led_number	  = start_led;
+		this_ws2812->stop_led_number 	  = stop_led;
+		this_ws2812->my_led 			 			= static_led;// буфер светодиодов
+		this_ws2812->treset_buffer 		  = static_treset_buffer;
+		this_ws2812->offset  						= this_ws2812->start_led_number;
+		
+		start_ws2812(this_ws2812);
+		start_DMA(this_ws2812);
 }
 
 //================================================================================
@@ -328,22 +328,22 @@ void DMA1_Channel1_IRQHandler(void)
 		void init_w2812_TIM2_4_struct(void)
 		{
 		
-				my_ws2812_2.DMA 						=   DMA1;
-				my_ws2812_2.DMA_Channel 				=   DMA1_Channel7;
-				my_ws2812_2.IT_TC 						=   DMA1_IT_TC7;
-				my_ws2812_2.DMA_HANDLER 				=   DMA1_Channel7_IRQHandler;
-				my_ws2812_2.DMA_IRQ_NUMBER 				=   DMA1_Channel7_IRQn;
-				my_ws2812_2.GPIO						=   GPIOA;
-				my_ws2812_2.GPIO_PIN					=   GPIO_Pin_3;
+				my_ws2812_2.DMA 						= DMA1;
+				my_ws2812_2.DMA_Channel 				= DMA1_Channel7;
+				my_ws2812_2.IT_TC 						= DMA1_IT_TC7;
+				my_ws2812_2.DMA_HANDLER 				= DMA1_Channel7_IRQHandler;
+				my_ws2812_2.DMA_IRQ_NUMBER 				= DMA1_Channel7_IRQn;
+				my_ws2812_2.GPIO						= GPIOA;
+				my_ws2812_2.GPIO_PIN					= GPIO_Pin_3;
 			
-				my_ws2812_2.TIMER						=   TIM2;
-				my_ws2812_2.timer_dma_cc				=   TIM_DMA_CC4;
+				my_ws2812_2.TIMER						=	TIM2;
+				my_ws2812_2.timer_dma_cc				= TIM_DMA_CC4;
 									
 				my_ws2812_2.TIM_OCInit					=	TIM_OC4Init;
-				my_ws2812_2.TIM_OCPreloadConfig         =   TIM_OC4PreloadConfig;
+				my_ws2812_2.TIM_OCPreloadConfig = TIM_OC4PreloadConfig;
 									
-				my_ws2812_2.timer_dma_ccr				=   &TIM2->CCR4;
-				my_ws2812_2.NVIC_prioritet				=   2;
+				my_ws2812_2.timer_dma_ccr				=	&TIM2->CCR4;
+				my_ws2812_2.NVIC_prioritet				= 2;
 		}
 		//================================================================================
 		void DMA1_Channel7_IRQHandler(void)
@@ -374,35 +374,35 @@ void DMA1_Channel1_IRQHandler(void)
 		{
 		
 				my_ws2812_3.DMA 							= DMA1;
-				my_ws2812_3.DMA_Channel                     = DMA1_Channel4;
-				my_ws2812_3.IT_TC                           = DMA1_IT_TC4;
-				my_ws2812_3.DMA_HANDLER                     = DMA1_Channel4_IRQHandler;
-				my_ws2812_3.DMA_IRQ_NUMBER                  = DMA1_Channel4_IRQn;
-				my_ws2812_3.GPIO                            = GPIOB;
-				my_ws2812_3.GPIO_PIN                        = GPIO_Pin_7;
+				my_ws2812_3.DMA_Channel 			= DMA1_Channel5;
+				my_ws2812_3.IT_TC 						= DMA1_IT_TC5;
+				my_ws2812_3.DMA_HANDLER 			= DMA1_Channel5_IRQHandler;
+				my_ws2812_3.DMA_IRQ_NUMBER 		= DMA1_Channel5_IRQn;
+				my_ws2812_3.GPIO							= GPIOA;
+				my_ws2812_3.GPIO_PIN					= GPIO_Pin_0;
 				
-				my_ws2812_3.TIMER                           = TIM4;
-				my_ws2812_3.timer_dma_cc                    = TIM_DMA_CC2;
+				my_ws2812_3.TIMER							= TIM2;
+				my_ws2812_3.timer_dma_cc			= TIM_DMA_CC1;
 									
-				my_ws2812_3.TIM_OCInit                      = TIM_OC2Init;
-				my_ws2812_3.TIM_OCPreloadConfig             = TIM_OC2PreloadConfig;
+				my_ws2812_3.TIM_OCInit				= TIM_OC1Init;
+				my_ws2812_3.TIM_OCPreloadConfig 		= TIM_OC1PreloadConfig;
 									
-				my_ws2812_3.timer_dma_ccr                   =&TIM4->CCR2;
-				my_ws2812_3.NVIC_prioritet                  = 2;
+				my_ws2812_3.timer_dma_ccr			=&TIM2->CCR1;
+				my_ws2812_3.NVIC_prioritet				= 2;
 		}
 //=============================================================================
-		void DMA1_Channel4_IRQHandler(void)
+		void DMA1_Channel5_IRQHandler(void)
 		{
 			//ENTER_CRITICAL_SECTION();
-				DMA1->IFCR = DMA1_IT_TC4;
+				DMA1->IFCR = DMA1_IT_TC5;
 				
 				/* Disable the selected DMAy Channelx */
-				DMA1_Channel4->CCR &= (uint16_t)(~DMA_CCR4_EN);
+				DMA1_Channel5->CCR &= (uint16_t)(~DMA_CCR5_EN);
 				
-				DMA1_Channel4 ->CMAR = my_ws2812_3.buff32_pointer;
-				DMA1_Channel4->CNDTR = my_ws2812_3.size;
+				DMA1_Channel5 ->CMAR = my_ws2812_3.buff32_pointer;
+				DMA1_Channel5->CNDTR = my_ws2812_3.size;
 				/* Enable the selected DMAy Channelx */
-				DMA1_Channel4->CCR |= DMA_CCR4_EN;
+				DMA1_Channel5->CCR |= DMA_CCR5_EN;
 				led_handler(&my_ws2812_3);
 				
 				//my_ws2812_3.flag = 1;

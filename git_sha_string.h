@@ -1,4 +1,4 @@
 #ifndef _GIT_SHA_STRING_H_ 
  #define _GIT_SHA_STRING_H_ 
- char git_sha_string[] = "/home/ilia/projects/varzin/SynchroLightc708534428c13626e8b3687bba6b84a0f1db0659" ; 
+ char git_sha_string[] = "/home/ilia/projects/varzin/SynchroLightae5cc76bcddea54a93c6fa06c9f9893d5a9f4a14" ; 
  #endif 
