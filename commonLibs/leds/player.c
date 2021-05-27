@@ -13,45 +13,45 @@
 #ifdef TEST_MODULE
 uint8_t temp_mem[25*21]={				//	[ ?????? ???.....[??????? ????.........................................................................................]
 //1//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb		
-		1,0,			45,1,				0,0,				0,0,						10,								1, 0,							255,255,255,            		0,0,0,0,0,0,0, 									// 1 SCEN
+		1,0,			45,1,				0,0,				0,0,						10,								1, 0,							255,255,255,            					0,0,0,0,0,0,0, 									// 1 SCEN
 //2//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb				
-		1,0,			200,0,			45,1,				0,0,						10,								1, 0,							255,0,100,           	 			0,0,0,0,0,0,0,									// 2-3 scen
+		1,0,			200,0,				45,1,				0,0,						10,								1, 0,							255,0,100,           	 					0,0,0,0,0,0,0,									// 2-3 scen
 //3//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb				
-		1,0,			200,0,			45,1,				0,0,						10,								1, 0,							0,0,255,            				0,0,0,0,0,0,0,									// 4-5 scen
+		1,0,			200,0,				45,1,				0,0,						10,								1, 0,							0,0,255,            						0,0,0,0,0,0,0,									// 4-5 scen
 //4//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb		
-		1,0,			200,0,			45,1,				1,1,						30,								2, 0,							3,				255,0,50,					0,0,255,					255,0,50,   	// 6-7 scen
+		1,0,			200,0,				45,1,				1,1,						30,								2, 0,							3,				255,0,50,					0,0,255,					255,0,50,   	// 6-7 scen
 //5//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb			                           
-		1,0,			200,0,			45,1,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,			0,0,255, 			// 8-9 scen
+		1,0,			200,0,				45,1,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,				0,0,255, 			// 8-9 scen
 //6//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb							                                        
-		1,0,			200,0,			45,1,				1,1,						30,								2, 0,							3,				0,0,255,					255,0,50,					255,255,0255,	// 10-11 scen
+		1,0,			200,0,				45,1,				1,1,						30,								2, 0,							3,				0,0,255,					255,0,50,					255,255,0255,	// 10-11 scen
 //7//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb			                                        
-		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,			0,0,255,			// 12 scen
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,				0,0,255,			// 12 scen
 //8//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb							                                        
-		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,			0,0,255,					255,0,50,			// 13 scen
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,				0,0,255,					255,0,50,			// 13 scen
 //9//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb								                                        
 		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				0,0,255,					255,0,50,					255,255,255,	// 14 scen
 //10//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb						                                        
-		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,			0,0,255,			// 12 scen
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,				0,0,255,			// 12 scen
 //11//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb							                                        
-		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,			0,0,255,					255,0,50,			// 13
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,				0,0,255,					255,0,50,			// 13
 //12//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb						                                        
 		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				0,0,255,					255,0,50,					255,255,255,	// 14
 //13//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb						                         							
-		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,			0,0,255,			// 12 ??
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,				0,0,255,			// 12 ??
 //14//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb					                                        
-		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,			0,0,255,					255,0,50,			//13
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,				0,0,255,					255,0,50,			//13
 //15//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb						                                        
 		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				0,0,255,					255,0,50,					255,255,255,		//14
 //16//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb					                         							
-		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,			0,0,255,				// 12 ??
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,0,50,					255,255,255,				0,0,255,				// 12 ??
 //17//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb						                                        
-		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,			0,0,255,					255,0,50,			//13
+		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				255,255,255,				0,0,255,					255,0,50,			//13
 //18//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb							                                        
 		1,0,			50,0,				0,0,				1,1,						30,								2, 0,							3,				0,0,255,					255,0,50,					255,255,255,		//14
 //19//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb							                                        
 		1,0,			45,1,				0,0,				1,1,						30,								2, 0,							3,				0,0,255,					255,0,50,					255,255,255,		//14
 //20//	instr		time fade		time hold			route					fade						 		type_of processor					 rgb																			 							
-		1,0,			200,0,			0,0,			0,0,						10,									1, 0,							255,255,255,            		0,0,0,0,0,0,0 		///  ???? ????, ???2??
+		1,0,			200,0,				0,0,				0,0,						10,								1, 0,							255,255,255,            		0,0,0,0,0,0,0 		///  ???? ????, ???2??
 
 };
 #endif
@@ -294,7 +294,7 @@ static uint8_t crosfade_calc()
 	#ifdef MASTER
 	if(my_player.crosfade > SYNCHRO_VALUE&& synchro_flag == 0)// 
 	{
-				rf_sendStartCmd (RF_ADDRESS_BROADCAST, my_player.mem, my_player.frame,0, my_player.crosfade);// посылаем команду запуска сцены
+				rf_sendStartCmd (RF_ADDRESS_BROADCAST, my_player.mem, my_player.frame,0, my_player.crosfade);// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				synchro_flag = 1;
 	}
 	#endif

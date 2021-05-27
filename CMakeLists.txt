@@ -55,11 +55,7 @@ set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${GCC_COMPILE_FLAGS} ${CMAKE_CXX_DEBUG_FLAG
 #message(FATAL_ERROR "Закомментируйте эту строку после добавления cmakе файлов, созданных keil2cmake.py!"
 include(${CMAKE_CURRENT_SOURCE_DIR}/Target_1_sources_list.cmake)
 
-add_custom_target(
-    myCustomTarget
-    COMMAND sh ../script_add_git_hash.sh ${CMAKE_CURRENT_SOURCE_DIR}
-)
-add_dependencies(${EXEC_NAME} myCustomTarget)
+
 
 # отладочный вывод
 message(STATUS "CMAKE_CXX_FLAGS = " ${CMAKE_CXX_FLAGS})
