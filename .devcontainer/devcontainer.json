@@ -1,0 +1,49 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.158.0/containers/ubuntu
+{
+	"name": "Ubuntu",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Ubuntu version: focal, bionic
+		"args": { "VARIANT": "focal" }
+	},
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+		
+	},
+	"mounts": ["type=bind,source=/dev/bus/usb,target=/dev/bus/usb"],
+	"runArgs": ["--privileged"],
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-python.python",
+		"ms-toolsai.jupyter",
+		"eamodio.gitlens",
+		"huizhou.githd",
+		"donjayamanne.githistory",
+		"mhutchie.git-graph",
+		"ms-azuretools.vscode-docker",
+		"jinsihou.diff-tool",
+		"jbenden.c-cpp-flylint",
+		"marus25.cortex-debug",
+		"ms-vscode.cmake-tools",
+		"twxs.cmake",
+		"ms-dotnettools.csharp",
+		"ms-vscode.cpptools",
+		"ms-vscode-remote.remote-ssh-edit",
+		"ms-vscode-remote.remote-ssh",
+		"ms-vscode-remote.remote-containers",
+		"dan-c-underwood.arm"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	//"remoteUser": "vscode"
+}
