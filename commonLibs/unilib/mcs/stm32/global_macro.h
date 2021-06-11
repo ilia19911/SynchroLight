@@ -29,7 +29,7 @@
 #define NOINLINE                    __attribute__((noinline))
 #define NORETURN                    __attribute__ ((noreturn))
 
-#define nop()                       __nop()
+#define nop()                       __NOP()
 
 #define pgm_read_byte(address)      *(( uint8_t*)(address))
 #define pgm_read_word(address)      *((uint16_t*)(address))

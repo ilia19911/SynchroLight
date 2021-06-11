@@ -19,11 +19,11 @@ void delay_us(uint32_t us)
 
 	while (us--) // 4  SUBS + BCS + PIPLINE_RELOAD
 	{
-		__nop(); //	5
-		__nop(); //	6
-		__nop(); //	7
-		__nop(); //	8
-		__nop(); //	9  9*8= 72 clk at MHz = 1us
+		__NOP(); //	5
+		__NOP(); //	6
+		__NOP(); //	7
+		__NOP(); //	8
+		__NOP(); //	9  9*8= 72 clk at MHz = 1us
 	}
 }
 

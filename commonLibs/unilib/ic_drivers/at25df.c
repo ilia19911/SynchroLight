@@ -10,13 +10,13 @@ static void at25df_delay_50ns(void)
 {
 	STATIC_ASSERT(F_CPU<=180000000UL);	 // max 178 MHz is coded in next lines
 
-	(F_CPU>=140000000UL)? __nop(),__nop(),__nop(),__nop(),__nop(),__nop(),__nop(), __nop() : 	// 140-160Mhz 
-	(F_CPU>=120000000UL)? __nop(),__nop(),__nop(),__nop(),__nop(),__nop(),__nop() : 			// 120-140
-	(F_CPU>=100000000UL)? __nop(),__nop(),__nop(),__nop(),__nop() :  							// 100-120
-	(F_CPU>=80000000UL)? __nop(),__nop(),__nop(),__nop() :  									// 80-100
-	(F_CPU>=60000000UL)? __nop(),__nop(),__nop() :          									// 60-80
-	(F_CPU>=40000000UL)? __nop(),__nop() :                  									// 40-60
-	(F_CPU>=20000000UL)? __nop() : 	                        									// 20-40
+	(F_CPU>=140000000UL)? __NOP(),__NOP(),__NOP(),__NOP(),__NOP(),__NOP(),__NOP(), __NOP() : 	// 140-160Mhz 
+	(F_CPU>=120000000UL)? __NOP(),__NOP(),__NOP(),__NOP(),__NOP(),__NOP(),__NOP() : 			// 120-140
+	(F_CPU>=100000000UL)? __NOP(),__NOP(),__NOP(),__NOP(),__NOP() :  							// 100-120
+	(F_CPU>=80000000UL)? __NOP(),__NOP(),__NOP(),__NOP() :  									// 80-100
+	(F_CPU>=60000000UL)? __NOP(),__NOP(),__NOP() :          									// 60-80
+	(F_CPU>=40000000UL)? __NOP(),__NOP() :                  									// 40-60
+	(F_CPU>=20000000UL)? __NOP() : 	                        									// 20-40
 	(void)0;                                                									// <20 - dummy
 }
 

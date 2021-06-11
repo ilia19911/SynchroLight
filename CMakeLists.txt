@@ -53,7 +53,10 @@ set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${GCC_COMPILE_FLAGS} ${CMAKE_CXX_DEBUG_FLAG
 # подключаем cmake файлы, сгенерированные скриптом
 #message(FATAL_ERROR "Comment out this line after keil-converted cmake lists are included!")
 #message(FATAL_ERROR "Закомментируйте эту строку после добавления cmakе файлов, созданных keil2cmake.py!"
-include(${CMAKE_CURRENT_SOURCE_DIR}/Target_1_sources_list.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/master_target_debug.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/master_target_release.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/slave_target_debug.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/slave_target_release.cmake)
 
 # отладочный вывод
 message(STATUS "CMAKE_CXX_FLAGS = " ${CMAKE_CXX_FLAGS})

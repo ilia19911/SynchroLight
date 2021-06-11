@@ -8,11 +8,12 @@
 
 // Глобальные дефайны
 #define F_CPU							72000000
-#define NDEBUG
-
 #define VERSION_MINOR			2
 #define VERSION_MAJOR			0
 #define VERSION_LITERAL		"a"
+
+//#define __nop __NOP 
+
 
 // Заголовки стандартной Сишной либлиотеки 
 #include <stdio.h>
@@ -49,11 +50,13 @@
 #include "uni_flash.h"
 #include "uni_eeprom.h"
 
-// Заголовки конфигурации аппаратной части
-#include "low_level0.h"
+
 
 // Заголовки модулей проекта
 #include "rf_parser.h"
+#ifdef SLAVE
+// Заголовки конфигурации аппаратной части
+#include "low_level0_slave.h"
 #include "ff.h"
 #include "fileTransfer.h"
 #include "display_kingbright.h"
@@ -62,8 +65,24 @@
 #include "ws2812b.h"
 #include "scen_memory.h"
 #include "effect_processor.h"
-
 // Заголовок глобальных переменных
-#include "var.h"
+#include "var_slave.h"
+#endif
+#ifdef MASTER
+// Заголовки конфигурации аппаратной части
+#include "low_level0_master.h"
+#include "buttons.h"
+#include "ff.h"
+#include "fileTransfer.h"
+#include "display_kingbright.h"
+#include "display_menu.h"
+//#include "led_maping.h"
+#include "player.h"
+#include "scen_memory.h"
+// Заголовок глобальных переменных
+#include "var_master.h"
+//#include "effect_processor.h"
+#endif
+
 
 #endif /* _INCLUDE_H_ */

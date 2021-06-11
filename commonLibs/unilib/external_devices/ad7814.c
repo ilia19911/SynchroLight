@@ -22,7 +22,7 @@ void ad7814Task (ad7814_t *sense)
 	// Ну и получить значение в градусах цельсия
 	sense->temperature = (float)reg * KScale;
 		
-	__nop ();
+	__NOP ();
 }
 
 static uint8_t spiXmit (SPI_TypeDef *SPIx, uint8_t byte)
