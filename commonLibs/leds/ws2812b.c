@@ -27,7 +27,7 @@
 
 //------------------------------------------------------------
 // Internal
-		uint8_t								static_treset_buffer[TRESET]; //буфер с нулями, нужного размера. Чтобы интерфейс работал быстрее, он создан заранее
+		uint8_t								static_treset_buffer[TRESET]; //пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		
 //------------------------------------------------------------
 
@@ -54,7 +54,7 @@ void ws2812_init_univerces(void)
 //================================================================================
 void set_empty_DMA_buffer(ws2812 *this_ws2812)
 {
-	if(this_ws2812->empty_first_buffer )//если передача пакета окончена
+	if(this_ws2812->empty_first_buffer )//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		this_ws2812->empty_first_buffer = 0;
 		this_ws2812->buff_pointer = this_ws2812->BUF_DMA1;
@@ -132,9 +132,9 @@ uint16_t convert_led_to_bin(ws2812 *this_ws2812, uint16_t offset, uint16_t led_n
 	
 	for(uint8_t i = 0; i < led_number; i ++)
 	{
-				convert_byte_to_bin( this_ws2812->my_led[i + offset].red,					output + 	    (i * 24) );
-				convert_byte_to_bin( this_ws2812->my_led[i + offset].green,				output + 8  + (i * 24) );
-				convert_byte_to_bin( this_ws2812->my_led[i + offset].blue,				output + 16 + (i * 24) );
+				convert_byte_to_bin( this_ws2812->my_led[i + offset].red,				output + 8 +  (i * 24) );
+				convert_byte_to_bin( this_ws2812->my_led[i + offset].green,				output + 16 + (i * 24) );
+				convert_byte_to_bin( this_ws2812->my_led[i + offset].blue,				output + 0 +  (i * 24) );
 				counter += 24;
 	}
 
@@ -152,7 +152,7 @@ uint16_t set_binary_data(ws2812 *this_ws2812)
 
 	byte_to_DMA = convert_led_to_bin(this_ws2812, this_ws2812->offset , leds_to_send, this_ws2812->buff_pointer);
 	
-	if(leds_to_send + (this_ws2812->offset - this_ws2812->start_led_number)  >= len_number)// должно быть равно если это последний пакет. Больше(>) - это только защита от бага
+	if(leds_to_send + (this_ws2812->offset - this_ws2812->start_led_number)  >= len_number)// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ(>) - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
 			this_ws2812->offset  = this_ws2812->start_led_number;
 			this_ws2812->state = Last_translation;
@@ -188,10 +188,10 @@ void led_handler(ws2812 *this_ws2812)
 			this_ws2812->state = Treset; 
 		break;
 	}
-	//КОСТЫЛЬ для того чтобы после срыва тактирования, dma восстанавливался
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, dma пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DMA1_Channel5->CCR = 0x00003193;
 		DMA1_Channel5->CCR  |=  DMA_CCR5_DIR; 
-	// конец костыля 
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 }
 //================================================================================
 void ws2812b_Init(ws2812  *this_ws2812, uint16_t start_led, uint16_t stop_led)
@@ -270,7 +270,7 @@ void ws2812b_Init(ws2812  *this_ws2812, uint16_t start_led, uint16_t stop_led)
 		
 		this_ws2812->start_led_number	  = start_led;
 		this_ws2812->stop_led_number 	  = stop_led;
-		this_ws2812->my_led 			 			= static_led;// буфер светодиодов
+		this_ws2812->my_led 			 			= static_led;// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		this_ws2812->treset_buffer 		  = static_treset_buffer;
 		this_ws2812->offset  						= this_ws2812->start_led_number;
 		

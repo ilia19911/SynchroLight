@@ -20,9 +20,9 @@ void led_maping_set_map()
 uint8_t led_map_set_pixel(uint8_t x, uint8_t y, leds this_leds)
 {
 	uint16_t led_number = my_map.matrix[x][y];
-	my_map.my_leds[led_number].red 	 =	this_leds.red;
-	my_map.my_leds[led_number].blue  =	this_leds.green; //// не смог нормально перевернуть, перевернул здесь ред  и грин
-	my_map.my_leds[led_number].green =	this_leds.blue;
+	my_map.my_leds[led_number].red 	 =	this_leds.red ;
+	my_map.my_leds[led_number].green =	this_leds.green   * 0.90;
+	my_map.my_leds[led_number].blue  =	this_leds.blue * 0.90; //// пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ  пїЅ пїЅпїЅпїЅпїЅ
 	return 0;
 }
 //================================================================================
