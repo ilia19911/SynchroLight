@@ -25,6 +25,10 @@ RUN apt-get -y update && \
 
 RUN useradd -ms /bin/bash vscode
 
+COPY ./.vscode.in/ /.vscode/
+#RUN mkdir -p /workspaces/SynchroLight/
+#RUN ln -s ./.vscode.in/ /workspaces/SynchroLight/.vscode
+
 #USER vscode
 
 # [Optional] Uncomment this section to install additional OS packages.
