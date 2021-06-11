@@ -57,6 +57,8 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/master_target_debug.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/master_target_release.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/slave_target_debug.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/slave_target_release.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/slave_retranslator_target_debug.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/slave_retranslator_target_release.cmake)
 
 # отладочный вывод
 message(STATUS "CMAKE_CXX_FLAGS = " ${CMAKE_CXX_FLAGS})
