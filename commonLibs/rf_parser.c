@@ -38,9 +38,14 @@ void rf_task (void)
 	if (transc.receiver.readyRead)
 	{
 		#ifdef MASTER
-#else
+			
+		#else
 			rf_parse (transc.receiver.rxBuffer, transc.receiver.bytesReceived);
-		#endif
+			#ifdef SLAVE_RETRANSLATOR
+			sx1276_LoRa_sendPacket(&transc, transc.receiver.rxBuffer, transc.receiver.bytesReceived);
+			delay_ms(250);
+			#endif /* SLAVE_RETRANSLATOR */
+		#endif /* MASTER */
 		transc.receiver.readyRead = 0;
 	}
 }
