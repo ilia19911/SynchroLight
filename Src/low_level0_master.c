@@ -19,7 +19,7 @@ void initLowLevel (void)
 	initTransceiver ();
 	at25df_init ();
 	uart_init (&uart_debug, 115200);
-	
+    buttonsInit ();
 	
 	display_init_74hc(GPIOC, 13,GPIOB, 3,GPIOB,4,GPIOC,14);
 	display_init_symbol(GPIOA,11,GPIOB, 9,GPIOB, 8,GPIOA, 15);
@@ -136,10 +136,10 @@ static void initTransceiver (void)
 	sTrc.errorCodeRate = SX1276_LORA_ECR4_6;
 	sTrc.frequency = SERVICE_FREQUENCY;
 	sTrc.headerType = SX1276_LORA_HEADER_EXPLICIT;
-	sTrc.maxPower = 7;
+	sTrc.maxPower = 1;
 	sTrc.oscType = SX1276_LORA_OSC_TCXO;
 	sTrc.outputPin = SX1276_LORA_OUT_RFO;
-	sTrc.outputPower = 15;
+	sTrc.outputPower = 1;
 	sTrc.preambleLength = 10;
 	sTrc.spreadingFactor = 9;
 	sTrc.oscillatorFrequency = RF_CLOCK_FREQUENCY;

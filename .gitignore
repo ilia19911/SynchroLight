@@ -1,2 +1,3 @@
 /build
+cmake-build-debug
 git_sha_string.h

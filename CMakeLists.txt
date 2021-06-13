@@ -2,9 +2,9 @@
 cmake_minimum_required(VERSION 3.15)
 
 # название проекта, версия, описание в свободной форме
-project(MyProject
+project(SynchroLight
 		VERSION 1.0
-		DESCRIPTION "NEW_CMAKE_PROJ "
+		DESCRIPTION "Krasnoyarsk street light complex"
 # языки проекта, если не указать, будет принято, что проект на С и С++
 		LANGUAGES C ASM)
 
