@@ -132,10 +132,17 @@ uint16_t convert_led_to_bin(ws2812 *this_ws2812, uint16_t offset, uint16_t led_n
 	
 	for(uint8_t i = 0; i < led_number; i ++)
 	{
-				convert_byte_to_bin( this_ws2812->my_led[i + offset].red,				output + 8 +  (i * 24) );
-				convert_byte_to_bin( this_ws2812->my_led[i + offset].green,				output + 16 + (i * 24) );
-				convert_byte_to_bin( this_ws2812->my_led[i + offset].blue,				output + 0 +  (i * 24) );
-				counter += 24;
+		#ifdef LED_RGB
+		#elif defined (LED_RBG)
+		#elif  defined (LED_GBR)
+		#elif  defined (LED_GRB)
+		#elif  defined (LED_BRG)
+			convert_byte_to_bin( this_ws2812->my_led[i + offset].red,				output + 8 +  (i * 24) );
+			convert_byte_to_bin( this_ws2812->my_led[i + offset].green,				output + 16 + (i * 24) );
+			convert_byte_to_bin( this_ws2812->my_led[i + offset].blue,				output + 0 +  (i * 24) );
+			counter += 24;
+		#elif  defined (LED_BGR)
+		#endif
 	}
 
 	return counter;

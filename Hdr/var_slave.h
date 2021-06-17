@@ -19,6 +19,19 @@
 	
 #endif
 
+
+
+//#define LED_RGB
+//#define LED_RBG
+//#define LED_GBR
+//#define LED_GRB
+//#define LED_BGR
+#define LED_BRG  // определение последовательности цветов в ленте . нужно сделать переменной позже
+
+#define RED_LED_POW 0.9f //пропорциональное изменение мощности красного цвета
+#define GREEN_LED_POW 0.729f //пропорциональное изменение мощности зеленого цвета
+#define BLUE_LED_POW 0.7695f //пропорциональное изменение мощности синего цвета
+
 #ifdef MAIN
 sx1276_LoRa_Modem 			transc;
 timeout_t 							transc_update;
