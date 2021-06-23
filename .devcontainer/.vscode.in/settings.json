@@ -1,31 +1,11 @@
 {
-    //"remote.extensionKind": {
-    //    "eamodio.gitlens": [ "ui" ],
-    //    "huizhou.githd": [ "workspace" ],
-    //    "donjayamanne.githistory": [ "workspace" ],
-    //    "mhutchie.git-graph": [ "workspace" ]
-    //},
     "c-cpp-flylint.clang.enable":false,
     "c-cpp-flylint.cppcheck.enable": true,
     "c-cpp-flylint.lizard.enable": false,
     "c-cpp-flylint.flexelint.enable": false,
     "c-cpp-flylint.flawfinder.enable": false,
-    "files.associations": {
-        "systick_timer.h": "c",
-        "dprintf_conf.h": "c",
-        "rcc.h": "c",
-        "eeprom_protected.h": "c",
-        "kalman_1d.h": "c",
-        "io.h": "c",
-        "user.h": "c",
-        "pin_macro.h": "c",
-        "ecu_benzo_proto.h": "c",
-        "uart_no_dma.h": "c",
-        "adclib.h": "c"
-    },
     "cortex-debug.armToolchainPath": "/",
     "cortex-debug.gdbPath": "/bin/gdb-multiarch",
-    
     "cmake.configureSettings":{
     	"CMAKE_C_COMPILER_FORCED":"true",
         "TOOLCHAIN_PREFIX": "/",
