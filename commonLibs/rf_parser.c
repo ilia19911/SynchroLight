@@ -3,6 +3,8 @@
 //static void rf_parse (uint8_t *data, uint8_t length);
 static const uint8_t rfheader[3] = {0xcd, 0x16, 0xbb};
 
+static timeout_t resetTrcTimeout;
+
 static uint8_t txBuff[64];
 static uni_eeprom_t settings;
 
@@ -27,22 +29,32 @@ void rf_init (void)
 	sx1276_LoRa_SetFrequency (&transc, RF_FREQ_CHANNEL(channel));
 	delay_ms (100);
 	sx1276_LoRa_startRx (&transc);
+
+    software_timer_start(&resetTrcTimeout, 1000 * 5 * 60);
 }
 
 void rf_task (void)
 {
 	// Обновим состояние трансивера
 	if (software_timer (&transc_update)) sx1276_LoRa_updateState (&transc);
-	
+
+	// Если сработал таймер таймаута - резетим трансивер
+    if (software_timer(&resetTrcTimeout))
+    {
+        initTransceiver ();
+        rf_init();
+    }
+
 	// Если есть принятые данные - обрабатываем их
 	if (transc.receiver.readyRead)
 	{
+        software_timer_start(&resetTrcTimeout, 1000 * 5 * 60);
 		#ifdef MASTER
-			
+
 		#else
 			rf_parse (transc.receiver.rxBuffer, transc.receiver.bytesReceived);
 			#ifdef SLAVE_RETRANSLATOR
-			sx1276_LR_sendPacket(&transc, transc.receiver.rxBuffer, transc.receiver.bytesReceived);
+			sx1276_LoRa_sendPacket(&transc, transc.receiver.rxBuffer, transc.receiver.bytesReceived);
 			delay_ms(250);
 			#endif /* SLAVE_RETRANSLATOR */
 		#endif /* MASTER */
