@@ -3,7 +3,7 @@
 static void init_rcc (void);
 static void init_gpio (void);
 static void init_spi (void);
-static void initTransceiver (void);
+void initTransceiver (void);
 //static void init_w2812_B10_struct(void);
 //static void init_w2812_B11_struct(void);
 //static void init_w2812_TIM1_struct(void);
@@ -122,7 +122,7 @@ static void init_spi (void)
 	SPI_Cmd (SPI1, ENABLE);
 }
 
-static void initTransceiver (void)
+void initTransceiver (void)
 {
 	sx1276_LoRa_InitTypeDef sTrc;
 	

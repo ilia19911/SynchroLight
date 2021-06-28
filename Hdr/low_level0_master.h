@@ -56,5 +56,6 @@
 
 void initLowLevel (void);
 void transceiverTask (void);
+void initTransceiver (void);
 
 #endif /* _LOW_LEVEL0_H_ */
