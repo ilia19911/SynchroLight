@@ -55,7 +55,7 @@ void rf_task (void)
 			rf_parse (transc.receiver.rxBuffer, transc.receiver.bytesReceived);
 			#ifdef SLAVE_RETRANSLATOR
 			sx1276_LoRa_sendPacket(&transc, transc.receiver.rxBuffer, transc.receiver.bytesReceived);
-			delay_ms(250);
+			//delay_ms(250);
 			#endif /* SLAVE_RETRANSLATOR */
 		#endif /* MASTER */
 		transc.receiver.readyRead = 0;

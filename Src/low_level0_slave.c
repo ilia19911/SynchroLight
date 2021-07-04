@@ -170,7 +170,7 @@ void transceiverTask (void)
 	if (software_timer (&transc_update))
 		sx1276_LoRa_updateState (&transc);
 
-	if (!transc.Control.busy) pin_clr (PIN_DIGIT_EN_4);
+	//if (!transc.Control.busy) pin_clr (PIN_DIGIT_EN_4);
 	
 	if (transc.receiver.readyRead)
 	{
