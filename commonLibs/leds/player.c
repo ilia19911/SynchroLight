@@ -3,12 +3,8 @@
 #include "ws2812b.h"
 
 #define START_SLAVE
-
 #define MEMORY
-
 #define TEST_MODULE
-
-static uint8_t synchro_flag = 0;
 
 #ifdef TEST_MODULE
 uint8_t temp_mem[25 * 21] = {
@@ -117,10 +113,9 @@ once mem
 //			return my_memory.my_scen_header.last_adress - get_frame_adress(mem_number, frame_number); //
 //}
 
-//
 
-//================================================================================
-void set_led_state()
+
+static void set_led_state()
 {
 	leds this_led;
 	for (uint16_t x = 0; x < X_MATRIX_SIZE; x++)
@@ -133,22 +128,14 @@ void set_led_state()
 	}
 }
 
-//================================================================================
-void player_comand_handler()
-{
-}
-
-//================================================================================
-
 #endif
 
-//================================================================================
-void TEST_get_frame(uint16_t frame_number)
+
+static void TEST_get_frame(uint16_t frame_number)
 {
 	memcpy((void *)(&FRAME), temp_mem + (frame_number * 21), 21); //
 }
-//================================================================================
-void fill_frame(uint16_t mem_number, uint16_t frame_number)
+static void fill_frame(uint16_t mem_number, uint16_t frame_number)
 {
 #ifndef TEST_MODULE
 	uint16_t frame_adress = get_frame_adress(mem_number, frame_number);
@@ -160,71 +147,81 @@ void fill_frame(uint16_t mem_number, uint16_t frame_number)
 	TEST_get_frame(frame_number);
 #endif
 }
-//================================================================================
-void auto_start_next_frame()
+static void auto_start_next_frame()
 {
 	my_player.frame++; //
-
 #ifdef TEST_MODULE
-	if (my_player.frame > FRAME_IN_TEST_SCEN - 1)
+	if (my_player.frame == FRAME_IN_TEST_SCEN )
 		my_player.frame = 0;
 #endif
-	PREVIOUS_FRAME = FRAME;
-	fill_frame(my_player.mem, my_player.frame);
-	player_start_mem(my_player.mem, my_player.frame, 1);
-}
-//================================================================================
-void player_play_mem(uint16_t mem_number, uint8_t mem_frame, uint8_t rate)
-{
-#ifndef TEST_MODULE
-	fill_mem_header(mem_number); //
-	fill_playback_header();		 //
+	player_play_mem(my_player.mem, my_player.frame, 1);
+#ifdef MASTER
+	rf_sendStartCmd(RF_ADDRESS_BROADCAST, my_player.mem, my_player.frame, 0, my_player.crosfade); // �������� ������� ������� �����
 #endif
-
-	fill_frame(mem_number, mem_frame);
-	player_start_mem(mem_number, mem_frame, rate);
 }
-//================================================================================
-//
-void player_start_mem(uint16_t mem_number, uint8_t mem_frame, int8_t rate)
-{
-
-	//set_playback( mem_number,  mem_frame,	 rate);
-	//
-	//my_player.rate 								= rate;
-	my_player.mem = mem_number;
-	my_player.frame = mem_frame;
-	my_player.state = PLAYBACK_ENABLED;				  //
-	my_player.frame_time_begine = systick_timer.tics; //
-	my_player.crosfade = 0;
-}
-static void crossfade_correct(uint8_t new_crossfade)
-{
-	//uint32_t new_crossfade = (((float)(systick_timer.tics  - my_player.frame_time_begine) /((float)FRAME.crostime*10))*255);
-
-	my_player.frame_time_begine = systick_timer.tics - ((float)FRAME.crostime * 10) * ((float)new_crossfade / 255);
-
-	my_player.crosfade = new_crossfade;
-}
-//================================================================================
-void player_synchro(uint16_t mem_number, uint8_t mem_frame, int8_t rate, uint8_t crossfade)
-{
-	if (my_player.mem != mem_number || my_player.frame != mem_frame || my_player.state != PLAYBACK_ENABLED)
-	{
-		player_play_mem(mem_number, mem_frame, crossfade);
-	}
-	else if (crossfade > my_player.crosfade + DOPUSK || crossfade < my_player.crosfade - DOPUSK)
-	{
-		crossfade_correct(crossfade);
-	}
-}
-//================================================================================
-//
-void fill_playback_header()
+static void fill_playback_header()
 {
 	my_memory.get_memory((void *)&PLAYBACK_HEADER, sizeof(PLAYBACK_HEADER), my_memory.my_scen_header.start_adress);
 }
-//================================================================================
+static uint8_t check_saturation(uint32_t val)
+{
+	uint8_t result = val;
+	if(val>0xFF)
+	{
+		result = 0xFF;
+	}	
+	return result;
+}
+static uint8_t holdtime_calc()
+{
+	uint8_t result = 0;
+	if(FRAME.holdtime!=0)
+	{
+		uint32_t new_holdfade = (((systick_timer.tics - my_player.frame_time_begine) - (FRAME.crostime * 10)) * 255) / (FRAME.holdtime * 10);
+		if (my_player.hold != check_saturation(new_holdfade) || my_player.crosfade==0xFF)
+		{
+			my_player.hold = check_saturation(new_holdfade);
+			if (my_player.hold == 0xFF)
+			{
+				auto_start_next_frame(); 
+			}
+			result = 1;
+		}
+	}
+	else
+	{
+		auto_start_next_frame(); 
+		result = 1;
+	}
+	return result;
+}
+static uint8_t crosfade_calc()
+{
+	uint8_t result = 0;
+	uint32_t new_crossfade = ((systick_timer.tics - my_player.frame_time_begine) * 255) /(FRAME.crostime * 10);
+	if (my_player.crosfade != check_saturation(new_crossfade))
+	{
+		my_player.crosfade = check_saturation(new_crossfade);
+		result = 1;
+	}
+	else if( my_player.crosfade==0xFF)
+	{
+		result = holdtime_calc();
+	}
+	return result;
+}
+void payer_handler(void)
+{
+	if (my_player.state == PLAYBACK_ENABLED)
+	{
+		if (crosfade_calc() )
+		{
+			#ifndef MASTER
+			set_led_state();
+			#endif
+		}
+	}
+}
 void player_stop_mem()
 {
 	my_player.state = PLAYBACK_DISABLED; //
@@ -242,62 +239,31 @@ void player_stop_mem()
 	rf_sendStopCmd(RF_ADDRESS_BROADCAST);
 #endif
 }
-//================================================================================
-static uint8_t holdtime_calc()
+void player_synchro(uint16_t mem_number, uint8_t mem_frame, int8_t rate, uint8_t crossfade)
 {
-	uint32_t new_holdfade = (((float)(systick_timer.tics - my_player.frame_time_begine) / ((float)FRAME.holdtime * 10)) * 255);
-	if (new_holdfade > my_player.hold + 1)
-	{
-		my_player.hold = new_holdfade;
-		if (new_holdfade > 0xFF) //
-		{
-			auto_start_next_frame(); //
-			my_player.crosfade = 0;
-			my_player.hold = 0;
-			synchro_flag = 0;
-		}
-		return 0;
-	}
-	return 1;
+	player_play_mem(mem_number, mem_frame, 1);
 }
-
-//================================================================================
-/*
-
-*/
-static uint8_t crosfade_calc()
+void player_play_mem(uint16_t mem_number, uint8_t mem_frame, uint8_t rate)
 {
-#ifdef MASTER
-	if (my_player.crosfade > SYNCHRO_VALUE && synchro_flag == 0) //
-	{
-		rf_sendStartCmd(RF_ADDRESS_BROADCAST, my_player.mem, my_player.frame, 0, my_player.crosfade); // �������� ������� ������� �����
-		synchro_flag = 1;
-	}
+#ifndef TEST_MODULE
+	fill_mem_header(mem_number); //
+	fill_playback_header();		 //
 #endif
-	uint32_t new_crossfade = (((float)(systick_timer.tics - my_player.frame_time_begine) / ((float)FRAME.crostime * 10)) * 255);
-	if (new_crossfade > (my_player.crosfade + 1))
-	{
-		my_player.crosfade = new_crossfade;
 
-		if (new_crossfade > 0xFF) //
-		{
-			my_player.crosfade = 0xFF;
-			return holdtime_calc();
-		}
-		return 0;
+	if(mem_frame!=0)
+	{
+		fill_frame(mem_number, mem_frame-1);
 	}
 	else
-		return 1;
-}
-//================================================================================
-//
-void payer_handler(void)
-{
-	if (my_player.state == PLAYBACK_DISABLED)
-		return;
-	if (crosfade_calc() != 0)
-		return; //
-#ifndef MASTER
-	set_led_state();
-#endif
+	{
+		fill_frame(mem_number, FRAME_IN_TEST_SCEN-1);
+	}
+	PREVIOUS_FRAME = FRAME;
+	fill_frame(mem_number, mem_frame);
+	my_player.mem = mem_number;
+	my_player.frame = mem_frame;
+	my_player.state = PLAYBACK_ENABLED;				  //
+	my_player.frame_time_begine = systick_timer.tics; //
+	my_player.crosfade = 0;
+	my_player.hold = 0;
 }

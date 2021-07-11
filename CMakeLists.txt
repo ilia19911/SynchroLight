@@ -55,6 +55,8 @@ set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${GCC_COMPILE_FLAGS} ${CMAKE_CXX_DEBUG_FLAG
 #message(FATAL_ERROR "Закомментируйте эту строку после добавления cmakе файлов, созданных keil2cmake.py!"
 include(${CMAKE_CURRENT_SOURCE_DIR}/master_target_debug.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/master_target_release.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/master_v2_target_debug.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/master_v2_target_release.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/slave_target_debug.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/slave_target_release.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/slave_retranslator_target_debug.cmake)

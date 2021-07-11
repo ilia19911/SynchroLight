@@ -70,7 +70,11 @@
 #endif
 #ifdef MASTER
 // Заголовки конфигурации аппаратной части
+#ifdef MASTER_V2
+#include "low_level0_master_v2.h"
+#else
 #include "low_level0_master.h"
+#endif
 #include "buttons.h"
 #include "ff.h"
 #include "fileTransfer.h"

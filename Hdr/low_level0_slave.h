@@ -1,5 +1,5 @@
-#ifndef _LOW_LEVEL0_H_
-#define _LOW_LEVEL0_H_
+#ifndef _LOW_LEVEL0_SLAVE_H_
+#define _LOW_LEVEL0_SLAVE_H_
 
 /* ======================================================================	*/
 /* В данном файле описываются в формета pin_macro все ноги контроллера		*/
