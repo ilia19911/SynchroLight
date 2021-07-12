@@ -1,5 +1,5 @@
-#ifndef __display_kingbright_H
-#define __display_kingbright_H
+#ifndef __display_kingbright_74hc_H
+#define __display_kingbright_74hc_H
 
 #include "include.h"
 

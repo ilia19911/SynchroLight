@@ -75,7 +75,7 @@ set	(GROUP_SRC_SRC
 		Src/it.c
 		../commonLibs/rf_parser.c
 		../commonLibs/fileTransfer.c
-		../commonLibs/display_kingbright.c
+		Src/display_kingbright_74hc.c
 		Src/buttons.c
 		../commonLibs/display_menu.c
 	)

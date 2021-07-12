@@ -1,5 +1,6 @@
 #include "include.h"
 #include "stdio.h"
+
 uint8_t page_number;
 uint16_t this_channel;
 
@@ -17,7 +18,7 @@ static void main_page_hanler()
 		if(presset_button == button_1) 
 		{
 				player_play_mem(0, 0,	0);
-				rf_sendStartCmd (RF_ADDRESS_BROADCAST, my_player.mem, my_player.frame,0, my_player.crosfade);//
+				rf_sendStartCmd (RF_ADDRESS_BROADCAST, 0, 0,0, 0);//
 		}
 		if(presset_button == button_2) 
 		{
@@ -67,7 +68,6 @@ static void rf_page_handler()
 void menu_handler(void)
 {
 	dislay_Handler();
-
 	switch(page_number)
 	{
 		case main_page:

@@ -5,7 +5,7 @@ set(EXEC_NAME master_v2_target_debug_STM32F103CB)
 add_executable(${EXEC_NAME})
 
 set(MCU STM32F103CB)
-target_compile_definitions(${EXEC_NAME} PRIVATE USE_STDPERIPH_DRIVER  HSE_VALUE=16000000 MASTER MASTER_V2 STM32F10X_MD  )
+target_compile_definitions(${EXEC_NAME} PRIVATE USE_STDPERIPH_DRIVER  HSE_VALUE=16000000 MASTER_V2 STM32F10X_MD  )
 target_compile_definitions(${EXEC_NAME} PRIVATE )
 target_include_directories(${EXEC_NAME} PRIVATE .//)
 target_include_directories(${EXEC_NAME} PRIVATE .//CMSIS)
@@ -71,11 +71,11 @@ set	(GROUP_SRC_UNILIB
 
 set	(GROUP_SRC_SRC
 		Src/main_master.c
-		Src/low_level0_master.c
+		Src/low_level0_master_v2.c
 		Src/it.c
 		../commonLibs/rf_parser.c
 		../commonLibs/fileTransfer.c
-		../commonLibs/display_kingbright.c
+		Src/display_kingbright.c
 		Src/buttons.c
 		../commonLibs/display_menu.c
 	)

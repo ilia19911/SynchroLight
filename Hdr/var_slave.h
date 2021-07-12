@@ -11,11 +11,11 @@
 
 
 
-#if !defined (MASTER) && !defined (SLAVE)
+#if !defined (SLAVE)
 	#error Please specefy - this device master or slave
 #endif
 	
-#if defined (MASTER) && defined (SLAVE) //#error Device can't be in both mode - master and slave. Specify only one
+#if (defined (MASTER) || defined (MASTER_V2)) && defined (SLAVE) //#error Device can't be in both mode - master and slave. Specify only one
 	
 #endif
 

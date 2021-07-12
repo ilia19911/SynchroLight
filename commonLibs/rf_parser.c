@@ -49,7 +49,7 @@ void rf_task (void)
 	if (transc.receiver.readyRead)
 	{
         software_timer_start(&resetTrcTimeout, 1000 * 5 * 60);
-		#ifdef MASTER
+		#if defined MASTER || defined MASTER_v2
 
 		#else
 			rf_parse (transc.receiver.rxBuffer, transc.receiver.bytesReceived);

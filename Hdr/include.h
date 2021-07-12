@@ -59,7 +59,6 @@
 #include "low_level0_slave.h"
 #include "ff.h"
 #include "fileTransfer.h"
-#include "display_kingbright.h"
 #include "led_maping.h"
 #include "player.h"
 #include "ws2812b.h"
@@ -69,16 +68,10 @@
 #include "var_slave.h"
 #endif
 #ifdef MASTER
-// Заголовки конфигурации аппаратной части
-#ifdef MASTER_V2
-#include "low_level0_master_v2.h"
-#else
 #include "low_level0_master.h"
-#endif
 #include "buttons.h"
 #include "ff.h"
 #include "fileTransfer.h"
-#include "display_kingbright.h"
 #include "display_menu.h"
 //#include "led_maping.h"
 #include "player.h"
@@ -86,7 +79,24 @@
 // Заголовок глобальных переменных
 #include "var_master.h"
 //#include "effect_processor.h"
+#include "display_kingbright_74hc.h"
 #endif
+#ifdef MASTER_V2
+#include "low_level0_master_v2.h"
+#include "buttons.h"
+#include "ff.h"
+#include "fileTransfer.h"
+#include "display_menu.h"
+//#include "led_maping.h"
+#include "player.h"
+#include "scen_memory.h"
+// Заголовок глобальных переменных
+#include "var_master.h"
+//#include "effect_processor.h"
+#include "display_kingbright.h"
+#endif
+
+
 
 
 #endif /* _INCLUDE_H_ */

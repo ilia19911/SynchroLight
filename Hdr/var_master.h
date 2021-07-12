@@ -9,7 +9,7 @@
 #define SERVICE_FREQUENCY														869000000
 
 
-#if !defined (MASTER) && !defined (SLAVE)
+#if !(defined (MASTER) || defined (MASTER_V2) ) && !defined (SLAVE) 
 	#error Please specefy - this device master or slave
 #endif
 	

@@ -1,4 +1,5 @@
 #include "include.h"
+
 //#include "rf_parser.h"
 #include "ws2812b.h"
 
@@ -93,7 +94,7 @@ once mem
 	
 
 */
-#ifndef MASTER
+#if !defined MASTER && !defined MASTER_V2
 
 //================================================================================
 ////
@@ -155,7 +156,7 @@ static void auto_start_next_frame()
 		my_player.frame = 0;
 #endif
 	player_play_mem(my_player.mem, my_player.frame, 1);
-#ifdef MASTER
+#if defined MASTER || defined MASTER_V2
 	rf_sendStartCmd(RF_ADDRESS_BROADCAST, my_player.mem, my_player.frame, 0, my_player.crosfade); // �������� ������� ������� �����
 #endif
 }
@@ -216,7 +217,7 @@ void payer_handler(void)
 	{
 		if (crosfade_calc() )
 		{
-			#ifndef MASTER
+			#if !defined MASTER && !defined MASTER_V2
 			set_led_state();
 			#endif
 		}
@@ -225,7 +226,7 @@ void payer_handler(void)
 void player_stop_mem()
 {
 	my_player.state = PLAYBACK_DISABLED; //
-#ifndef MASTER
+#if !defined MASTER && !defined MASTER_V2
 	for (uint8_t i = 0; i < LED_NUMBER; i++)
 	{
 		my_map.my_leds[i].red = 0;
@@ -233,7 +234,7 @@ void player_stop_mem()
 		my_map.my_leds[i].blue = 0;
 	}
 #endif
-#ifdef MASTER
+#if defined MASTER || defined MASTER_V2
 	//#ifdef M/StopCmd (RF_ADDRESS_BROADCAST);
 	//#endif
 	rf_sendStopCmd(RF_ADDRESS_BROADCAST);
