@@ -48,7 +48,7 @@ void rf_task (void)
 	// Если есть принятые данные - обрабатываем их
 	if (transc.receiver.readyRead)
 	{
-        software_timer_start(&resetTrcTimeout, 1000 * 5 * 60);
+        software_timer_start(&resetTrcTimeout, TRANSCEIVER_IDLE_TIME_THRESHOLD);
 		#if defined MASTER || defined MASTER_v2
 
 		#else
@@ -141,6 +141,7 @@ void rf_sendStopCmd (uint16_t addr)
 
 void rf_binding (uint8_t ch)
 {
+    int retryCnt = 0;
 	rf_packet_t *pck = (void*)txBuff;
 	
 	// Запихиваем хидер
@@ -161,11 +162,20 @@ void rf_binding (uint8_t ch)
 		for (uint8_t j = 0; j < RF_BINDING_REPEAT; j++)
 		{
 			sx1276_LoRa_sendPacket (&transc, txBuff, RF_PACKET_HEADER_LEN + pck->dataLen);
-			while (transc.Control.busy) 
+			while ((transc.Control.busy) || (retryCnt < BIND_RETRY_THRESHOLD))
 			{
 				dislay_Handler ();
 				transceiverTask ();
+				retryCnt++;
+				delay_ms (2);
 			}
+			if (retryCnt == BIND_RETRY_THRESHOLD)
+            {
+			    // Резетим теоретически подвисший трансивер
+                initTransceiver ();
+                rf_init();
+            }
+		    retryCnt = 0;
 			delay_ms (50);
 		}
 	}

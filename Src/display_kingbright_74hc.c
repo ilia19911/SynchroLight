@@ -159,7 +159,9 @@ void dislay_Handler(void)
 		}
 		symbol_number++;
 		if (symbol_number > SYMBOLS_NUMBER)
-			symbol_number = 0;
+		{
+            symbol_number = 0;
+        }
 		LastUpdateTime = systick_timer.tics;
 	}
 }

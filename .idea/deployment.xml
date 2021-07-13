@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData">
     <serverData>
+      <paths name="Raspberry (047e4256-2973-4f25-a290-489194c75017)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="Raspberry (42750a48-4aaf-4d61-9977-80c4a502b96e)">
         <serverdata>
           <mappings>
@@ -10,6 +17,13 @@
         </serverdata>
       </paths>
       <paths name="Raspberry (a1d8d20a-4cb7-46dd-9c21-d49e91984fc5)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Raspberry (e336514a-a9ba-4aae-af25-2be2e0969937)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

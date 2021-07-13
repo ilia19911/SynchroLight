@@ -59,9 +59,9 @@ static void init_rcc (void)
 	RCC_PLLCmd (ENABLE);
 
 	while (!(RCC->CR & RCC_CR_PLLRDY));				// Ждем захвата ФАПЧ
-	RCC->CFGR |= RCC_CFGR_SW_PLL;							// Переключаем тактование на PLL	
-	while (!(RCC->CFGR & RCC_CFGR_SWS_PLL));	// Ждем пока переключимся
-	
+	RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
+    while (!(RCC->CFGR & RCC_CFGR_SWS_PLL));	// Ждем пока переключимся
+
 	RCC_APB2PeriphClockCmd (RCC_APB2Periph_AFIO, ENABLE);				// Включаием AFIO
 	RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM2, ENABLE);				// Включаем второй таймер
 	RCC_APB1PeriphClockCmd (RCC_APB1Periph_TIM3, ENABLE);				// Включаем второй таймер

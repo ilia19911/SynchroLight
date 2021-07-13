@@ -179,7 +179,7 @@ void dislay_Handler()
 {
 	static uint32_t LastUpdateTime = 0;
 
-	if ((systick_timer.tics - LastUpdateTime) > 5)
+	if ((systick_timer.tics - LastUpdateTime) > 2)
 	{
 		for (uint8_t i = 0; i < my_display.number_of_symb; i++)
 		{
