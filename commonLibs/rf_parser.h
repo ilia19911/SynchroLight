@@ -15,7 +15,7 @@
 #define RF_CMD_BIND											((uint8_t)0x05)
 
 #define RF_PACKET_HEADER_LEN						7
-#define BIND_RETRY_THRESHOLD                        50
+#define BIND_RETRY_THRESHOLD                        3000
 #define TRANSCEIVER_IDLE_TIME_THRESHOLD             (1000 * 5 * 60)
 #pragma pack (push, 1)
 
